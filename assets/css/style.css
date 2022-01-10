@@ -1,0 +1,14 @@
+.row{
+    margin-bottom: 0;
+}
+
+.card .card-content{
+    padding-bottom: 0;
+    padding-top: 10px;
+}
+
+nav{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
