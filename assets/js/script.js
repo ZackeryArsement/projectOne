@@ -4,7 +4,7 @@
 // var 4day-weatherUrl = 'pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + userZip ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 // var instagramUrl = 'https://graph.instagram.com/{media-id}?fields={fields}&access_token={access-token}';
 
-// var userZip = document.get ElementbyID(""); [user input - grab from html input element]
+// var userZip = document.getElementbyID(""); [user input - grab from html input element]
 // **userZip - currently inserted in API variables above - should be replaced by radius search var userChoice**
 // var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
 // var userHike = userZip + x miles radius search
