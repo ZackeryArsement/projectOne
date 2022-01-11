@@ -5,7 +5,8 @@
 // var instagramUrl = 'https://graph.instagram.com/{media-id}?fields={fields}&access_token={access-token}';
 
 // var userZip = document.get ElementbyID(""); [user input - grab from html input element]
-// **userZip should be replaced by radius search - for hike, daytrip & weekend getaway**
+// **userZip - currently inserted in API variables above - should be replaced by radius search var userChoice**
+// var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
 // var userHike = userZip + x miles radius search
 // var userDaytrip = userZip + y miles radius search
 // var userGetaway = userZip + z miles radius search
@@ -25,6 +26,7 @@
 
 //     getApi(googleUrl);
 
+// For Hike and Daytrip
 // function getApi(weatherUrl) {
 //     fetch(weatherUrl)
 //       .then(function (response) {
@@ -38,6 +40,7 @@
 
 //     getApi(weatherUrl);
 
+// For Weekend Getaway
 // function getApi(4day-weatherUrl) {
 //     fetch(googleUrl)
 //       .then(function (response) {
