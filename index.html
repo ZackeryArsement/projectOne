@@ -13,6 +13,71 @@
   </head>
 
   <body>
+  
+   
+   
+    <!-- Create the title bar for the home page -->
+    <nav>
+      <div class="nav-wrapper pageTitle">
+        <a href="#!" class="brand-logo center">Let's Get Outta Here!</a>
+      </div>
+    </nav>
+     <!--Create a user input field to input location -->
+      <div class="row uLoc">
+        <div class="input-field col-12 userLocation">
+          <input class="center" id="user-location" type="text" class="validate" placeholder="Enter your current zipcode">
+          <!-- <label for="user-location">Enter your current zip code</label> -->
+        </div>
+     </div>
+ 
+    <!-- Create the cards used to navigate the homepage and make trip selection -->
+    <div class="selectCards">
+      <div class="row">
+        <div class="col s12 m12 l4">
+          <div class="card">
+            <div class="card-image">
+              <img alt= "woman walking on path through wooded area" src=./assets/images/walk1.jpeg>
+              <span class="card-title">Walk/Hike</span>
+            </div>
+            <div class="card-action">
+              <a href="#">I just have a few hours but need to get out</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m12 l4">
+          <div class="card">
+            <div class="card-image">
+              <img alt="First person perspective of driving on a scenic road" src=./assets/images/daytrip1.jpeg>
+              <span class="card-title">Day Trip</span>
+            </div>
+            <div class="card-action">
+              <a href="#">I've got a full day to work with</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m12 l4">
+          <div class="card">
+            <div class="card-image">
+              <img alt="A couple holding hands walking through a grassy field" src=./assets/images/getaway1.jpeg>
+              <span class="card-title">Weekend Getaway</span>
+            </div>
+            <div class="card-action">
+              <a href="#">I want to escape for a weekend</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>        
+    
+    <box textAlign="center">
+      <button class="btn waves-effect waves-light submitBtn" type="submit" name="action">Find your destination!
+        <i class="material-icons right"></i>
+      </button>
+    </box>       
+              
+  <body>
 
     <!-- yo yo yo -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
