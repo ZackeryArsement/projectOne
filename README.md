@@ -1,1 +1,2 @@
-# projectOne
+# Let's Get Outta Here!
+A search engine for pandemic times...
