@@ -131,7 +131,17 @@
 
 
 
-
+.uLoc {
+    width: 100%;
+    justify-content: center;
+    margin: auto;
+    padding-left: 30%;
+    padding-right: 30%;
+}
+.userLocation {
+    width: 100%;
+    
+}
 
 .pageTitle{
     margin-bottom: 30px;
@@ -142,10 +152,7 @@
 }
 
 .submitBtn {
-    flex-wrap: wrap;
-    justify-content: center;
+    display: block;
+    margin: auto;
 }
 
-.userLocation {
-    justify-content: center;
-}
