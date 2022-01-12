@@ -170,6 +170,7 @@ function clearScreen(){
     }
 }
 
+<<<<<<< HEAD
 function favoriteButton(){
     var newRow = $("<div class='row'></div>");
     var favoritesCurrentRow;
@@ -197,9 +198,67 @@ function favoriteButton(){
         // console.log('added');
     }
 }
+=======
+// Pulling API data
+var userZip_test = '60660'
+// var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
+// var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
+// var userHike = userZip + 20 miles radius search (Parks)
+// var userDaytrip = userZip + 75 miles radius search (Restaurants, Museums, Parks, Events?)
+// var userGetaway = userZip + 200 miles radius search (Cities & Parks)
+>>>>>>> main
 
 // API variables:
 // var googleUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
+
+// var weatherUrl ='api.openweathermap.org/data/2.5/weather?zip=' + userZip ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
+// var 4day-weatherUrl = 'pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + userZip ',us&appid={be4771db9c53103bf67e6e18d9ddacc6';
+// var instagramUrl = 'https://graph.instagram.com/{media-id}?fields={fields}&access_token={access-token}';
+
+// var userZip = document.get ElementbyID(""); [user input - grab from html input element]
+
+
+// Starting code for getting APIs:
+// function getApi(googleUrl) {
+//     fetch(googleUrl)
+//       .then(function (response) {
+//         console.log(response);
+//         if (response.status === 200) {
+//             responseText.textContent = response.status;
+//           }
+//           return response.json();
+//       });
+//     }
+
+//     getApi(googleUrl);
+
+
+
+
+// HOMEPAGE JAVASCRIPT
+
+// **things that need to happen
+// Create event listener on the cards so when they're clicked it counts as a selection
+// have submit button redirect to result page
+var submitBtn = $('.submitBtn')
+var userTrip = $('.')
+var searchRadius
+var tripType = $('.tripType')
+
+submitBtn.click(function() {
+    window.location.replace('./results.html');
+
+    console.log('click');
+})
+
+console.log(submitBtn);
+
+var tripSelection = tripType.click(function() {
+    preventDefault(e);
+    tripType.css('border-color', 'blue');
+    console.log('type selct');
+});
+
 var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 // var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + 60660 + ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 
