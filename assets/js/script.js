@@ -170,7 +170,6 @@ function clearScreen(){
     }
 }
 
-<<<<<<< HEAD
 function favoriteButton(){
     var newRow = $("<div class='row'></div>");
     var favoritesCurrentRow;
@@ -198,15 +197,6 @@ function favoriteButton(){
         // console.log('added');
     }
 }
-=======
-// Pulling API data
-var userZip_test = '60660'
-// var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
-// var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
-// var userHike = userZip + 20 miles radius search (Parks)
-// var userDaytrip = userZip + 75 miles radius search (Restaurants, Museums, Parks, Events?)
-// var userGetaway = userZip + 200 miles radius search (Cities & Parks)
->>>>>>> main
 
 // API variables:
 // var googleUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
