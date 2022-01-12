@@ -154,6 +154,8 @@ function getApi(weatherUrl) {
       })
       .then(function(data){
           console.log(data);
+          displayWeather(data);
+          return data;
       })
     //   catch any errors
       .catch(function(){
@@ -161,6 +163,17 @@ function getApi(weatherUrl) {
     }
 
     getApi(weatherUrl);
+
+function displayWeather(data){
+    var weatherNav = document.getElementById('weather-data');
+    var currentTemp = data.main.temp;
+    var highTemp = 'H:' + data.main.temp_max;
+    var lowTemp = 'L:' + data.main.temp_min;
+    var feelsLike = 'Feels Like:' + data.main.feels_like;
+    var sunCloud = data.weather[0].description; 
+    // Working on getting the text on results page to look right...
+    weatherNav.textContent = currentTemp + ' ' + sunCloud;
+};
 
 // For Weekend Getaway
 // function getApi(weather4Url) {
