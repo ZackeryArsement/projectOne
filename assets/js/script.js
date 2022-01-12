@@ -1,19 +1,40 @@
 var arrayLocation = ['Austin', 'Dallas', 'San Antonio', 'Houston', 'Beaumont', 'Galveston', 'Waco', 'Amarillo', 'Lubbock', 'Corpus Christi'];
 var arrayDescription = ['Austin', 'Dallas', 'San Antonio', 'Houston', 'Beaumont', 'Galveston', 'Waco', 'Amarillo', 'Lubbock', 'Corpus Christi'];
 var arrayWeather = ['Austin', 'Dallas', 'San Antonio', 'Houston', 'Beaumont', 'Galveston', 'Waco', 'Amarillo', 'Lubbock', 'Corpus Christi'];
+var arrayDistance = [1, 200, 130, 220, 350, 250, 50, 400, 375, 175]
 var arrayImages = ["./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG"];
 var arrayMap = ["./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG"];
 var arrayCards = [];
+var arrayDataObjects = [];
 var arrayNewRows = [];
 
 var firstRow = $('#first-row');
 var firstColumn = $('#card-column')
 
+// Keep track of which cards have been selected for favorite bar
+var favoriteSelectedCards = [];
+
+// Keep track of the clone cards in the favorite bar
+var favoriteCardList = [];
+
+var favoritesCol = $('#favorites-column');
+var favoriteFirstRow = $('#favorites-first-row');
+
+// Keep track of the rows in the favorite bar... this is so we can delete the last row whenever we remove a card from the favorite list... We do not want empty divs cluttering our html
+var favoriteRows = [];
+favoriteRows[0] = favoriteFirstRow;
+
 var rowCount;
 
 // Load the cards and fill them with content
+createDataObjects();
+
 loadEmptyCards();
 fillEmptyCards();
+
+favoriteButton();
+favoriteButton();
+favoriteButton();
 // clearScreen();
 
 // Create 9 empty duplicate cards
@@ -73,6 +94,25 @@ function loadEmptyCards(){
     }
 }
 
+// Create 9 objects that contains the data for each card... This will be used to organize the cards dependant on their distance value
+function createDataObjects(){
+    for(i=0; i<10; i++){
+        arrayDataObjects[i] = {
+            'location': arrayLocation[i],
+            'description': arrayDescription[i],
+            'weather': arrayWeather[i],
+            'distance': arrayDistance[i],
+            'image': arrayImages[i],
+            'map': arrayMap[i]
+        }
+    }
+
+    // Sort the data objects based on their distance value
+    arrayDataObjects.sort(function(a, b) {
+        return parseFloat(a.distance) - parseFloat(b.distance);
+    });
+}
+
 // Fill each card with its weather, map, image, and description
 function fillEmptyCards(){
     for(i=0; i<10; i++){
@@ -82,7 +122,7 @@ function fillEmptyCards(){
             .children('#top-card')
             .children('#weather-nav')
             .children('p')
-            .text(arrayWeather[i]);
+            .text(arrayDataObjects[i].weather);
 
         // Map Image
         arrayCards[i]
@@ -92,7 +132,7 @@ function fillEmptyCards(){
             .children('#map-card')
             .children('#map-image')
             .children('img')
-            .attr('src', arrayImages[i]);
+            .attr('src', arrayDataObjects[i].map);
 
         // Image Image
         arrayCards[i]
@@ -102,21 +142,21 @@ function fillEmptyCards(){
             .children('#image-card')
             .children('#image-image')
             .children('img')
-            .attr('src', arrayImages[i]);
+            .attr('src', arrayDataObjects[i].image);
 
         // Location Name
         arrayCards[i]
             .children('#main-card')
             .children('#card-description')
             .children('span')
-            .text(arrayLocation[i]);
+            .text(arrayDataObjects[i].location + ' (' + arrayDataObjects[i].distance + ' mi)');
 
         // Description
         arrayCards[i]
             .children('#main-card')
             .children('#card-description')
             .children('p')
-            .text(arrayDescription[i]);
+            .text(arrayDataObjects[i].description);
     }
 }
 
@@ -130,21 +170,60 @@ function clearScreen(){
     }
 }
 
-// function to set the map properties
-function initMap() {
-    var options = {
-        zoom:15,
-        center:{lat:42.3601,lng:-71.0589}
-        }
-        var map = new google.maps.Map(document.getElementById('map'),options);
-    }
+// <<<<<<< apiBranch
+// // function to set the map properties
+// function initMap() {
+//     var options = {
+//         zoom:15,
+//         center:{lat:42.3601,lng:-71.0589}
+//         }
+//         var map = new google.maps.Map(document.getElementById('map'),options);
+//     }
 
-document.querySelector('#user-location').click();
-    console.log('clicked')
+// document.querySelector('#user-location').click();
+//     console.log('clicked')
 
+// =======
+// <<<<<<< HEAD
+// function favoriteButton(){
+//     var newRow = $("<div class='row'></div>");
+//     var favoritesCurrentRow;
+
+//     // Assume we know the parent card of the button pressed... make it variable 'buttonParent'
+//     var buttonParent = arrayCards[3];
+//     var selectedCard = buttonParent.children('#main-card').clone();
+
+//     if(favoriteSelectedCards.includes(buttonParent)){
+//         console.log('You have arleady selected this card for the favorite list.');
+//     }
+//     else{
+//         favoriteSelectedCards.push(buttonParent);
+
+//         // If there is only the first row available then put the card in the first row and add a row after it
+//         if(favoriteRows.length === 1){
+//             currentRow = favoriteFirstRow;
+//             favoriteRows[(favoriteRows.length-1)].append(selectedCard);
+//             currentRow = newRow;
+//         }
+//         else{
+//             favoriteRows[(favoriteRows.length-1)].append(selectedCard);
+//             currentRow = newRow;
+//         }
+//         // console.log('added');
+//     }
+// }
+=======
+// Pulling API data
+var userZip_test = '60660'
+// var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
+// var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
+// var userHike = userZip + 20 miles radius search (Parks)
+// var userDaytrip = userZip + 75 miles radius search (Restaurants, Museums, Parks, Events?)
+// var userGetaway = userZip + 200 miles radius search (Cities & Parks)
 
 // API variables:
 // var googleUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
+
 // var weatherUrl ='api.openweathermap.org/data/2.5/weather?zip=' + userZip ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 // var 4day-weatherUrsl = 'pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + userZip ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 
@@ -158,14 +237,14 @@ document.querySelector('#user-location').click();
 
 // Starting code for getting APIs: we will want to parse these by userHike, userDaytrip and userGetaway...
 
-function getApi() {
-    const requestUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
+// function getApi() {
+//     const requestUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
     
-    fetch(requestUrl)
-        .then(function (response) {
-        return response.json(); {
-        }
-    })}
+//     fetch(requestUrl)
+//         .then(function (response) {
+//         return response.json(); {
+//         }
+//     })}
 
 //     getApi(googleUrl);
 
@@ -181,6 +260,7 @@ function getApi() {
 //       });
 //     }
 
+
 //     getApi(weatherUrl);
 
 // For Weekend Getaway
@@ -195,3 +275,73 @@ function getApi() {
 //       });
 //     }
 //     getApi(4day-weatherUrl);
+=======
+//     getApi(googleUrl);
+
+
+
+
+// HOMEPAGE JAVASCRIPT
+
+// **things that need to happen
+// Create event listener on the cards so when they're clicked it counts as a selection
+// have submit button redirect to result page
+var submitBtn = $('.submitBtn')
+var userTrip = $('.')
+var searchRadius
+var tripType = $('.tripType')
+
+submitBtn.click(function() {
+    window.location.replace('./results.html');
+
+    console.log('click');
+})
+
+console.log(submitBtn);
+
+var tripSelection = tripType.click(function() {
+    preventDefault(e);
+    tripType.css('border-color', 'blue');
+    console.log('type selct');
+});
+
+var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
+// var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + 60660 + ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
+
+// Get weather data for Hike and Daytrip
+function getApi(weatherUrl) {
+    fetch(weatherUrl)
+      .then(function (response) {
+        console.log(response);
+        if (response.status === 200) {
+          }
+          return response.json();
+      })
+      .then(function(data){
+          console.log(data);
+      })
+    //   catch any errors
+      .catch(function(){
+      });
+    }
+
+    getApi(weatherUrl);
+
+// For Weekend Getaway
+// function getApi(weather4Url) {
+//     fetch(weather4Url)
+//     .then(function (response) {
+//       console.log(response);
+//       if (response.status === 200) {
+//         }
+//         return response.json();
+//     })
+//     .then(function(data){
+//         console.log(data);
+//     })
+//   //   catch any errors
+//     .catch(function(){
+//     });
+//   }
+
+//     getApi(weather4Url);
