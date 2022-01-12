@@ -25,3 +25,16 @@ nav{
     display: block;
     margin: auto;
 }
+
+.uLoc {
+    width: 10%;
+}
+
+.homepage{
+    background-color: skyblue;
+}
+
+.tripType:hover {
+    border: 5px;
+    border-color: blue;
+}

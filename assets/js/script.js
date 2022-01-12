@@ -130,7 +130,6 @@ function clearScreen(){
     }
 }
 
-// Pulling API data
 var userZip_test = '60660'
 // var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
 // var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
@@ -140,7 +139,6 @@ var userZip_test = '60660'
 
 // API variables:
 // var googleUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
-
 // var weatherUrl ='api.openweathermap.org/data/2.5/weather?zip=' + userZip ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 // var 4day-weatherUrl = 'pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + userZip ',us&appid={be4771db9c53103bf67e6e18d9ddacc6';
 // var instagramUrl = 'https://graph.instagram.com/{media-id}?fields={fields}&access_token={access-token}';
@@ -165,67 +163,80 @@ var userZip_test = '60660'
 
 
 
+
+
+
+
+
+
+
+
 // HOMEPAGE JAVASCRIPT
 
 // **things that need to happen
 // Create event listener on the cards so when they're clicked it counts as a selection
 // have submit button redirect to result page
+
 var submitBtn = $('.submitBtn')
-var userTrip = $('.')
-var searchRadius
-var tripType = $('.tripType')
+var searchRadius = 0
+var searchType
+const userType = ['Walk', 'DayTrip', 'Weekend']
+var tripTypeCard = $('.tripType')
+var userWalk = $('#userWalk')
+var userDay = $('#userDay')
+var userWeekend = $('#userWeekend')
+var tripSelection
+var userZipcode
+var selectedBox 
+
+selectedBox.css('box-shadow', '0 0 10px 10px red')
+
 
 submitBtn.click(function() {
-    window.location.replace('./results.html');
+    // window.location.href='./results.html';
 
+    userZipcode = $('#user-location').val();
     console.log('click');
-})
+    console.log(searchRadius);
+    console.log(searchType);
+    console.log(userZipcode)
+});
 
 console.log(submitBtn);
 
-var tripSelection = tripType.click(function() {
-    preventDefault(e);
-    tripType.css('border-color', 'blue');
-    console.log('type selct');
-});
+// tripTypeCard.on('click',function(this) {
+//     this.css('box-shadow', '0 0 10px 10px red')
+// })
 
-var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
-// var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + 60660 + ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 
-// Get weather data for Hike and Daytrip
-function getApi(weatherUrl) {
-    fetch(weatherUrl)
-      .then(function (response) {
-        console.log(response);
-        if (response.status === 200) {
-          }
-          return response.json();
-      })
-      .then(function(data){
-          console.log(data);
-      })
-    //   catch any errors
-      .catch(function(){
-      });
-    }
 
-    getApi(weatherUrl);
+userWalk.click(function() {
+    searchRadius= 20;
+    searchType = userType[0];
+    userWalk.css('box-shadow', '0 0 10px 10px red')
+    // console.log('user has selected walk/hike');
+    // console.log(searchRadius);
+    // console.log(searchType);
+})
 
-// For Weekend Getaway
-// function getApi(weather4Url) {
-//     fetch(weather4Url)
-//     .then(function (response) {
-//       console.log(response);
-//       if (response.status === 200) {
-//         }
-//         return response.json();
-//     })
-//     .then(function(data){
-//         console.log(data);
-//     })
-//   //   catch any errors
-//     .catch(function(){
-//     });
-//   }
+userDay.click(function() {
+    searchRadius= 75;
+    searchType = userType[1];
+    userDay = selectedBox;
+    // console.log('user has selected Day trip');
+    // console.log(searchRadius);
+    // console.log(searchType);
+})
 
-//     getApi(weather4Url);
+userWeekend.click(function() {
+    searchRadius=200;
+    searchType = userType[2];
+    userWeekend = selectedBox;
+    
+    // console.log('User has selected a weekend getaway');
+    // console.log(searchRadius);
+    // console.log(searchType);
+})
+
+
+console.log(userZipcode);
