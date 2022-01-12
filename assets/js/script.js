@@ -130,6 +130,7 @@ function clearScreen(){
     }
 }
 
+// Pulling API data
 var userZip_test = '60660'
 // var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
 // var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
