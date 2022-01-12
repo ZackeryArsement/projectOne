@@ -130,9 +130,17 @@ function clearScreen(){
     }
 }
 
+// Pulling API data
+var userZip_test = '60660'
+// var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
+// var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
+// var userHike = userZip + 20 miles radius search (Parks)
+// var userDaytrip = userZip + 75 miles radius search (Restaurants, Museums, Parks, Events?)
+// var userGetaway = userZip + 200 miles radius search (Cities & Parks)
 
 // API variables:
 // var googleUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
+
 // var weatherUrl ='api.openweathermap.org/data/2.5/weather?zip=' + userZip ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 // var 4day-weatherUrl = 'pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + userZip ',us&appid={be4771db9c53103bf67e6e18d9ddacc6';
 // var instagramUrl = 'https://graph.instagram.com/{media-id}?fields={fields}&access_token={access-token}';
@@ -180,3 +188,44 @@ var tripSelection = tripType.click(function() {
     tripType.css('border-color', 'blue');
     console.log('type selct');
 });
+
+var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
+// var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + 60660 + ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
+
+// Get weather data for Hike and Daytrip
+function getApi(weatherUrl) {
+    fetch(weatherUrl)
+      .then(function (response) {
+        console.log(response);
+        if (response.status === 200) {
+          }
+          return response.json();
+      })
+      .then(function(data){
+          console.log(data);
+      })
+    //   catch any errors
+      .catch(function(){
+      });
+    }
+
+    getApi(weatherUrl);
+
+// For Weekend Getaway
+// function getApi(weather4Url) {
+//     fetch(weather4Url)
+//     .then(function (response) {
+//       console.log(response);
+//       if (response.status === 200) {
+//         }
+//         return response.json();
+//     })
+//     .then(function(data){
+//         console.log(data);
+//     })
+//   //   catch any errors
+//     .catch(function(){
+//     });
+//   }
+
+//     getApi(weather4Url);

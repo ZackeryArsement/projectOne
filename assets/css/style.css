@@ -1,3 +1,12 @@
+/* Color Palette - "Funky Geometry" from Adobe Color- in Hex */
+:root {
+   --darkblue: #212940;
+   --teal: #2DA69A;
+   --yellow: #F2BE22;
+   --beige: #F2EAD0;
+   --orange: #F25835;
+}
+
 .row{
     margin-bottom: 0;
 }
