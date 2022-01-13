@@ -25,3 +25,22 @@ nav{
     display: block;
     margin: auto;
 }
+
+/* styles for the map id */
+#map {
+text-align: center;
+height: 500px;
+width: 100%;
+
+.uLoc {
+    width: 10%;
+}
+
+.homepage{
+    background-color: skyblue;
+}
+
+.tripType:hover {
+    border: 5px;
+    border-color: blue;
+}
