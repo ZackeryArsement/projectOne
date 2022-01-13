@@ -220,3 +220,29 @@ function clearScreen(){
         arrayNewRows[i].remove();
     }
 }
+
+// When Document is ready to load
+$( document ).ready(function() {
+    console.log( "ready!" );
+    
+    // Dropdown trigger JS
+    $(".dropdown-trigger").dropdown();
+});
+
+// Dropdown Menu Take 2
+function myFunction() {
+    document.getElementById(dropdown1).classList.toggle("show");
+}
+
+window.onclick = function(event) {
+    if (!event.target.matches('dropdown-trigger btn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns [i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}
