@@ -63,6 +63,7 @@ var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip
 //       });
 //     }
 //     getApi(4day-weatherUrl);
+
 //     getApi(googleUrl);
 
 
@@ -121,54 +122,52 @@ var userDay = $('#userDay')
 var userWeekend = $('#userWeekend')
 var tripSelection
 var userZipcode
-var selectedBox 
-
-// selectedBox.css('box-shadow', '0 0 10px 10px red')
-
-
-submitBtn.click(function() {
-    // window.location.href='./results.html';
-
-    userZipcode = $('#user-location').val();
-    console.log('click');
-    console.log(searchRadius);
-    console.log(searchType);
-    console.log(userZipcode)
-});
-
-// tripTypeCard.on('click',function(this) {
-//     this.css('box-shadow', '0 0 10px 10px red')
-// })
+var selectedTrip = userWalk
+var zipCodeStorage = window.localStorage.setItem('zipcode','')
 
 
 
-userWalk.click(function() {
+
+// Function for when the user selects the walk option
+var walkSelect = userWalk.click(function() {
     searchRadius= 20;
     searchType = userType[0];
-    userWalk.css('box-shadow', '0 0 10px 10px red')
-    // console.log('user has selected walk/hike');
-    // console.log(searchRadius);
-    // console.log(searchType);
+
+    selectedTrip.css('box-shadow', 'none');
+    selectedTrip = userWalk;
+    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
+
 })
 
-userDay.click(function() {
+// Function for when the user selects the Day Trip option
+var daySelect = userDay.click(function() {
     searchRadius= 75;
     searchType = userType[1];
-    userDay = selectedBox;
-    // console.log('user has selected Day trip');
-    // console.log(searchRadius);
-    // console.log(searchType);
-})
 
-userWeekend.click(function() {
+    selectedTrip.css('box-shadow', 'none');
+    selectedTrip = userDay;
+    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
+
+});
+
+// Function for when the user selects the Weekend Getaway option
+var weekendSelect = userWeekend.click(function() {
     searchRadius=200;
     searchType = userType[2];
-    userWeekend = selectedBox;
-    
-    // console.log('User has selected a weekend getaway');
-    // console.log(searchRadius);
-    // console.log(searchType);
-})
+    selectedTrip.css('box-shadow', 'none');
+    selectedTrip = userWeekend;
+    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
+
+});
+
+// Function for what happens when the user clicks the button to show them the trips
+submitBtn.click(function() {
+    userZipcode = $('#user-location').val();
+    window.localStorage.setItem('zipcode', userZipcode);
+    window.location.href='./results.html';
+
+});
+
 
 var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 // var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + 60660 + ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
