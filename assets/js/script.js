@@ -182,49 +182,14 @@ function clearScreen(){
 function favoriteButton(){
     var newRow = $("<div class='row'></div>");
     var favoritesCurrentRow;
-
-// document.querySelector('#user-location').click();
-//     console.log('clicked')
-
-    // Change the ID of the clone card to the location of the parent card being cloned
-    selectedCard.attr('id', buttonParent.children('#main-card')
-        .children('#card-description')
-        .children('span')
-        .text());
-
+    // Assume we know the parent card of the button pressed... make it variable 'buttonParent'
+    var buttonParent = arrayCards[3];
+    var selectedCard = buttonParent.children('#main-card').clone();
     if(favoriteSelectedCards.includes(buttonParent)){
         console.log('You have arleady selected this card for the favorite list.');
     }
     else{
         favoriteSelectedCards.push(buttonParent);
-// function favoriteButton(){
-//     var newRow = $("<div class='row'></div>");
-//     var favoritesCurrentRow;
-
-//     // Assume we know the parent card of the button pressed... make it variable 'buttonParent'
-//     var buttonParent = arrayCards[3];
-//     var selectedCard = buttonParent.children('#main-card').clone();
-
-//     if(favoriteSelectedCards.includes(buttonParent)){
-//         console.log('You have arleady selected this card for the favorite list.');
-//     }
-//     else{
-//         favoriteSelectedCards.push(buttonParent);
-
-//         // If there is only the first row available then put the card in the first row and add a row after it
-//         if(favoriteRows.length === 1){
-//             currentRow = favoriteFirstRow;
-//             favoriteRows[(favoriteRows.length-1)].append(selectedCard);
-//             currentRow = newRow;
-//         }
-//         else{
-//             favoriteRows[(favoriteRows.length-1)].append(selectedCard);
-//             currentRow = newRow;
-//         }
-//         // console.log('added');
-//     }
-// }
-
         // If there is only the first row available then put the card in the first row and add a row after it
         if(favoriteRows.length === 1){
             currentRow = favoriteFirstRow;
@@ -304,7 +269,7 @@ var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip
 //       });
 //     }
 //     getApi(4day-weatherUrl);
-=======
+
 //     getApi(googleUrl);
 
 
@@ -373,56 +338,61 @@ var userDay = $('#userDay')
 var userWeekend = $('#userWeekend')
 var tripSelection
 var userZipcode
-var selectedBox 
-
-selectedBox.css('box-shadow', '0 0 10px 10px red')
-
-
-submitBtn.click(function() {
-    // window.location.href='./results.html';
-
-    userZipcode = $('#user-location').val();
-    console.log('click');
-    console.log(searchRadius);
-    console.log(searchType);
-    console.log(userZipcode)
-});
-
-console.log(submitBtn);
-
-// tripTypeCard.on('click',function(this) {
-//     this.css('box-shadow', '0 0 10px 10px red')
-// })
+var selectedTrip = userWalk
+var zipCodeStorage = window.localStorage.setItem('zipcode','')
 
 
 
-userWalk.click(function() {
+// Get selection box on main page to highlight when selected
+
+
+var walkSelect = userWalk.click(function() {
     searchRadius= 20;
     searchType = userType[0];
-    userWalk.css('box-shadow', '0 0 10px 10px red')
+
+    selectedTrip.css('box-shadow', 'none');
+    selectedTrip = userWalk;
+    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
     // console.log('user has selected walk/hike');
     // console.log(searchRadius);
     // console.log(searchType);
 })
 
-userDay.click(function() {
+var daySelect = userDay.click(function() {
     searchRadius= 75;
     searchType = userType[1];
-    userDay = selectedBox;
+
+    selectedTrip.css('box-shadow', 'none');
+    selectedTrip = userDay;
+    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
     // console.log('user has selected Day trip');
     // console.log(searchRadius);
     // console.log(searchType);
-})
+});
 
-userWeekend.click(function() {
+var weekendSelect = userWeekend.click(function() {
     searchRadius=200;
     searchType = userType[2];
-    userWeekend = selectedBox;
-    
+    selectedTrip.css('box-shadow', 'none');
+    selectedTrip = userWeekend;
+    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
     // console.log('User has selected a weekend getaway');
     // console.log(searchRadius);
     // console.log(searchType);
-})
+});
+
+submitBtn.click(function() {
+    // window.location.href='./results.html';
+
+    userZipcode = $('#user-location').val();
+    window.localStorage.setItem('zipcode', userZipcode);
+    console.log('click');
+    console.log(localStorage);
+    // console.log(searchRadius);
+    // console.log(searchType);
+    // console.log(userZipcode)
+});
+
 
 
 console.log(userZipcode);
