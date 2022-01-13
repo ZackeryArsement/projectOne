@@ -1,3 +1,12 @@
+/* Color Palette - "Funky Geometry" from Adobe Color- in Hex */
+:root {
+   --darkblue: #212940;
+   --teal: #2DA69A;
+   --yellow: #F2BE22;
+   --beige: #F2EAD0;
+   --orange: #F25835;
+}
+
 .row{
     margin-bottom: 0;
 }
@@ -15,4 +24,23 @@ nav{
 .submitBtn {
     display: block;
     margin: auto;
+}
+
+/* styles for the map id */
+#map {
+text-align: center;
+height: 500px;
+width: 100%;
+
+.uLoc {
+    width: 10%;
+}
+
+.homepage{
+    background-color: skyblue;
+}
+
+.tripType:hover {
+    border: 5px;
+    border-color: blue;
 }
