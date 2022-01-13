@@ -33,8 +33,6 @@ loadEmptyCards();
 fillEmptyCards();
 
 favoriteButton();
-favoriteButton();
-favoriteButton();
 // clearScreen();
 
 // Create 9 empty duplicate cards
@@ -170,6 +168,7 @@ function clearScreen(){
     }
 }
 
+// When you click the favorite button 
 function favoriteButton(){
     var newRow = $("<div class='row'></div>");
     var favoritesCurrentRow;
@@ -177,6 +176,12 @@ function favoriteButton(){
     // Assume we know the parent card of the button pressed... make it variable 'buttonParent'
     var buttonParent = arrayCards[3];
     var selectedCard = buttonParent.children('#main-card').clone();
+
+    // Change the ID of the clone card to the location of the parent card being cloned
+    selectedCard.attr('id', buttonParent.children('#main-card')
+        .children('#card-description')
+        .children('span')
+        .text());
 
     if(favoriteSelectedCards.includes(buttonParent)){
         console.log('You have arleady selected this card for the favorite list.');
@@ -230,46 +235,46 @@ function favoriteButton(){
 // **things that need to happen
 // Create event listener on the cards so when they're clicked it counts as a selection
 // have submit button redirect to result page
-var submitBtn = $('.submitBtn')
-var userTrip = $('.')
-var searchRadius
-var tripType = $('.tripType')
+// var submitBtn = $('.submitBtn')
+// var userTrip = $('.')
+// var searchRadius
+// var tripType = $('.tripType')
 
-submitBtn.click(function() {
-    window.location.replace('./results.html');
+// submitBtn.click(function() {
+//     window.location.replace('./results.html');
 
-    console.log('click');
-})
+//     console.log('click');
+// })
 
-console.log(submitBtn);
+// console.log(submitBtn);
 
-var tripSelection = tripType.click(function() {
-    preventDefault(e);
-    tripType.css('border-color', 'blue');
-    console.log('type selct');
-});
+// var tripSelection = tripType.click(function() {
+//     preventDefault(e);
+//     tripType.css('border-color', 'blue');
+//     console.log('type selct');
+// });
 
-var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
-// var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + 60660 + ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
+// var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
+// // var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + 60660 + ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 
-// Get weather data for Hike and Daytrip
-function getApi(weatherUrl) {
-    fetch(weatherUrl)
-      .then(function (response) {
-        console.log(response);
-        if (response.status === 200) {
-          }
-          return response.json();
-      })
-      .then(function(data){
-          console.log(data);
-      })
-    //   catch any errors
-      .catch(function(){
-      });
-    }
+// // Get weather data for Hike and Daytrip
+// function getApi(weatherUrl) {
+//     fetch(weatherUrl)
+//       .then(function (response) {
+//         console.log(response);
+//         if (response.status === 200) {
+//           }
+//           return response.json();
+//       })
+//       .then(function(data){
+//           console.log(data);
+//       })
+//     //   catch any errors
+//       .catch(function(){
+//       });
+//  }
 
-    getApi(weatherUrl);
+// getApi(weatherUrl);
 
 // For Weekend Getaway
 // function getApi(weather4Url) {
