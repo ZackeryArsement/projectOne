@@ -170,7 +170,6 @@ function clearScreen(){
     }
 }
 
-<<<<<<< HEAD
 function favoriteButton(){
     var newRow = $("<div class='row'></div>");
     var favoritesCurrentRow;
@@ -198,7 +197,7 @@ function favoriteButton(){
         // console.log('added');
     }
 }
-=======
+
 // Pulling API data
 var userZip_test = '60660'
 // var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
@@ -206,10 +205,12 @@ var userZip_test = '60660'
 // var userHike = userZip + 20 miles radius search (Parks)
 // var userDaytrip = userZip + 75 miles radius search (Restaurants, Museums, Parks, Events?)
 // var userGetaway = userZip + 200 miles radius search (Cities & Parks)
->>>>>>> main
 
 // API variables:
 // var googleUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
+
+var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6&units=imperial';
+// var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 
 // var weatherUrl ='api.openweathermap.org/data/2.5/weather?zip=' + userZip ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 // var 4day-weatherUrl = 'pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + userZip ',us&appid={be4771db9c53103bf67e6e18d9ddacc6';
@@ -273,6 +274,8 @@ function getApi(weatherUrl) {
       })
       .then(function(data){
           console.log(data);
+          displayWeather(data);
+          return data;
       })
     //   catch any errors
       .catch(function(){
@@ -280,6 +283,54 @@ function getApi(weatherUrl) {
     }
 
     getApi(weatherUrl);
+
+function displayWeather(data){
+    var weatherNav = document.getElementById('weather-data');
+    var currentTemp = data.main.temp;
+    var highTemp = 'H:' + data.main.temp_max;
+    var lowTemp = 'L:' + data.main.temp_min;
+    var feelsLike = 'Feels Like:' + data.main.feels_like;
+    var sunCloud = data.weather[0].description;
+    var sunnyCloudy = sunCloud.charAt(0).toUpperCase() + sunCloud.slice(1);
+    console.log(sunnyCloudy); 
+    // Working on getting the text on results page to look right...
+    weatherNav.textContent = currentTemp + '\u00B0 F ' + sunnyCloudy;
+};
+
+// Converting zipcode or city and state to latitude/longitude
+    // Need to pull Geocoding Service from Google Maps API: https://developers.google.com/maps/documentation/javascript/geocoding
+
+// Option 1
+// var lat = '';
+// var lng = '';
+// var address = {userZip} || {userCitystate};
+// geocoder.geocode( { 'address': address}, function(results, status) {
+//   if (status == google.maps.GeocoderStatus.OK) {
+//      lat = results[0].geometry.location.lat();
+//      lng = results[0].geometry.location.lng();
+//     });
+//   } else {
+//     alert("Geocode was not successful for the following reason: " + status);
+//   }
+// });
+// alert('Latitude: ' + lat + ' Logitude: ' + lng);
+
+// Option 2
+// function getLatLngByZipcode(zipcode) 
+// {
+//     var geocoder = new google.maps.Geocoder();
+//     var address = zipcode;
+//     geocoder.geocode({ 'address': 'zipcode '+address }, function (results, status) {
+//         if (status == google.maps.GeocoderStatus.OK) {
+//             var latitude = results[0].geometry.location.lat();
+//             var longitude = results[0].geometry.location.lng();
+//             alert("Latitude: " + latitude + "\nLongitude: " + longitude);
+//         } else {
+//             alert("Request failed.")
+//         }
+//     });
+//     return [latitude, longitude];
+// }
 
 // For Weekend Getaway
 // function getApi(weather4Url) {
