@@ -236,30 +236,83 @@ var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip
 
 
 
+
+
+
+
+
+
+
+
 // HOMEPAGE JAVASCRIPT
 
 // **things that need to happen
 // Create event listener on the cards so when they're clicked it counts as a selection
 // have submit button redirect to result page
+
 var submitBtn = $('.submitBtn')
-var userTrip = $('.')
-var searchRadius
-var tripType = $('.tripType')
+var searchRadius = 0
+var searchType
+const userType = ['Walk', 'DayTrip', 'Weekend']
+var tripTypeCard = $('.tripType')
+var userWalk = $('#userWalk')
+var userDay = $('#userDay')
+var userWeekend = $('#userWeekend')
+var tripSelection
+var userZipcode
+var selectedBox 
+
+selectedBox.css('box-shadow', '0 0 10px 10px red')
+
 
 submitBtn.click(function() {
-    window.location.replace('./results.html');
+    // window.location.href='./results.html';
 
+    userZipcode = $('#user-location').val();
     console.log('click');
-})
+    console.log(searchRadius);
+    console.log(searchType);
+    console.log(userZipcode)
+});
 
 console.log(submitBtn);
 
-var tripSelection = tripType.click(function() {
-    preventDefault(e);
-    tripType.css('border-color', 'blue');
-    console.log('type selct');
-});
+// tripTypeCard.on('click',function(this) {
+//     this.css('box-shadow', '0 0 10px 10px red')
+// })
 
+
+
+userWalk.click(function() {
+    searchRadius= 20;
+    searchType = userType[0];
+    userWalk.css('box-shadow', '0 0 10px 10px red')
+    // console.log('user has selected walk/hike');
+    // console.log(searchRadius);
+    // console.log(searchType);
+})
+
+userDay.click(function() {
+    searchRadius= 75;
+    searchType = userType[1];
+    userDay = selectedBox;
+    // console.log('user has selected Day trip');
+    // console.log(searchRadius);
+    // console.log(searchType);
+})
+
+userWeekend.click(function() {
+    searchRadius=200;
+    searchType = userType[2];
+    userWeekend = selectedBox;
+    
+    // console.log('User has selected a weekend getaway');
+    // console.log(searchRadius);
+    // console.log(searchType);
+})
+
+
+console.log(userZipcode);
 var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 // var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + 60660 + ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 
