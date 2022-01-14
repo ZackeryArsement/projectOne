@@ -7,6 +7,35 @@
    --orange: #F25835;
 }
 
+body {
+    background-color: var(--beige);
+}
+
+.banner-image {
+    padding: 10px 0px 10px 0px;
+    height: 200px;
+}
+
+#custom-nav {
+    background-color: var(--teal);
+    margin-top: 40px;
+}
+
+#custom-header {
+    color: var(--yellow);
+    font-style: oblique;
+    font-weight: bolder;
+}
+
+#user-location {
+    text
+}
+
+/* .selectCards {
+    background-color: var(--beige);
+    padding: 10px;
+} */
+
 .row{
     margin-bottom: 0;
 }
@@ -21,9 +50,20 @@ nav{
     padding-right: 20px;
 }
 
+.custom-cardTitle {
+    color: var(--beige);
+}
+
 .submitBtn {
     display: block;
     margin: auto;
+}
+
+#custom-homeBtn {
+    background-color: var(--orange);
+    color: var(--beige);
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 /* styles for the map id */
