@@ -69,10 +69,6 @@ submitBtn.click(function() {
 
 });
 
-
-var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
-// var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + 60660 + ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
-
 // Get weather data for Hike and Daytrip
 function getApi(weatherUrl) {
     fetch(weatherUrl)
@@ -106,79 +102,6 @@ function displayWeather(data){
     // Working on getting the text on results page to look right...
     weatherNav.textContent = currentTemp + '\u00B0F ' + sunnyCloudy;
 };
-
-// Converting zipcode or city and state to latitude/longitude
-    // Need to pull Geocoding Service from Google Maps API: https://developers.google.com/maps/documentation/javascript/geocoding
-
-// Lane's code for converting zipcode to lat/lng:
-function geocode(){
-    var location = userZip_test;
-    axios.get('https://maps.googleapis.com/maps/api/geocode/json?components=country:US|postal_code'+userZip_test, {
-        params: {
-            address:location,
-            key: 'AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8'
-        }
-    })
-    .then(function(response){
-        console.log(response);
-        if (response.status === 200) {
-        }
-        return response;
-    })
-    .then(function(data){
-        console.log(data);
-        return data;
-    })
-    .catch (function (error){
-        console.log(error);
-    })
-    grabLatLng(data);
-    };
-
-// Trying to figure out the right syntax to pass the right data in () 
-// - results, data and response lead to error "Uncaught Reference Error - data is not defined"
-function grabLatLng(data){
-    userLat = data.results[0].geometry.location.lat();
-    userLng = data.results[0].geometry.location.lng();
-    return [userLat, userLng];
-};
-
-console.log(userLat, userLng);
-
-geocode();
-
-
-// Example Code: Option 1
-// var latitude = '';
-// var longitude = '';
-// var address = {userZip} || {userCitystate};
-// geocoder.geocode( { 'address': address}, function(results, status) {
-//   if (status == google.maps.GeocoderStatus.OK) {
-//      latitude = results[0].geometry.location.lat();
-//      longitude = results[0].geometry.location.lng();
-//     });
-//   } else {
-//     alert("Geocode was not successful for the following reason: " + status);
-//   }
-// });
-// alert('Latitude: ' + latitude + ' Logitude: ' + longitude);
-
-// Example Code: Option 2
-// function getGeocode(zipcode) 
-// {
-//     var geocoder = new google.maps.Geocoder();
-//     var address = zipcode;
-//     geocoder.geocode({ 'address': 'zipcode '+address }, function (results, status) {
-//         if (status == google.maps.GeocoderStatus.OK) {
-//             var latitude = results[0].geometry.location.lat();
-//             var longitude = results[0].geometry.location.lng();
-//             alert("Latitude: " + latitude + "\nLongitude: " + longitude);
-//         } else {
-//             alert("Request failed.")
-//         }
-//     });
-//     return [latitude, longitude];
-// }
 
 // Get Weather data for Weekend Getaway
 // function getApi(weather4Url) {
