@@ -41,6 +41,8 @@ createDataObjects();
 loadEmptyCards();
 fillEmptyCards();
 
+// clearScreen();
+
 // When you click the favorite button 
 function favoriteButton(button){
     // Assume we know the parent card of the button pressed... make it variable 'buttonParent'
@@ -244,7 +246,6 @@ function clearScreen(){
     }
 }
 
-<<<<<<< HEAD
 function setStoredFavoritesStorageToArray(){
     // If the locally storaged string with our saved favorite locations is not empty then create an array out of the string with ',' as the delimeter
     if((favoriteSelectedCards !== ',,,,,,,,,') && (favoriteSelectedCards !== emptyArray)){
@@ -255,12 +256,5 @@ function setStoredFavoritesStorageToArray(){
         favoriteSelectedCards = emptyArray;
     }
 }
-=======
-// When Document is ready to load
-$( document ).ready(function() {
-    console.log( "ready!" );
-    
-    // Dropdown trigger JS (With Hover Dropdown)
-    $(".dropdown-trigger").dropdown({ hover: true });
-});
->>>>>>> 53ac1fcc8cf457e77fdb1dc3c36d23d5d93d1e88
+
+
