@@ -1,71 +1,5 @@
 // Pulling API data
-var userZip_test = '60660'
-// var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
-// var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
-// var userHike = userZip + 20 miles radius search (Parks)
-// var userDaytrip = userZip + 75 miles radius search (Restaurants, Museums, Parks, Events?)
-// var userGetaway = userZip + 200 miles radius search (Cities & Parks)
-
-// API variables:
-// var googleUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
-
-var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6&units=imperial';
-// var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
-
-// var weatherUrl ='api.openweathermap.org/data/2.5/weather?zip=' + userZip ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
 // var 4day-weatherUrsl = 'pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + userZip ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
-
-// var userZip = document.get ElementbyID(""); [user input - grab from html input element]
-// **userZip - currently inserted in API variables above - should be replaced by radius search var userChoice**
-// var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
-// var userHike = userZip + x miles radius search
-// var userDaytrip = userZip + y miles radius search
-// var userGetaway = userZip + z miles radius search
-
-
-// Starting code for getting APIs: we will want to parse these by userHike, userDaytrip and userGetaway...
-
-// function getApi() {
-//     const requestUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
-    
-//     fetch(requestUrl)
-//         .then(function (response) {
-//         return response.json(); {
-//         }
-//     })}
-
-//     getApi(googleUrl);
-
-// For Hike and Daytrip
-// function getApi(weatherUrl) {
-//     fetch(weatherUrl)
-//       .then(function (response) {
-//         console.log(response);
-//         if (response.status === 200) {
-//             responseText.textContent = response.status;
-//           }
-//           return response.json();
-//       });
-//     }
-
-
-//     getApi(weatherUrl);
-
-// For Weekend Getaway
-// function getApi(4day-weatherUrl) {
-//     fetch(googleUrl)
-//       .then(function (response) {
-//         console.log(response);
-//         if (response.status === 200) {
-//             responseText.textContent = response.status;
-//           }
-//           return response.json();
-//       });
-//     }
-//     getApi(4day-weatherUrl);
-
-//     getApi(googleUrl);
-
 
 // HOMEPAGE JAVASCRIPT
 
@@ -150,6 +84,21 @@ var daySelect = userDay.click(function() {
 
 });
 
+// Pulling Weather API data and appending to webpage
+var userZip_test = '60660';
+// var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
+// var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
+// var userHike = userZip + 20 miles radius search (Parks)
+// var userDaytrip = userZip + 75 miles radius search (Restaurants, Museums, Parks, Events?)
+// var userGetaway = userZip + 200 miles radius search (Cities & Parks)
+var userLat = "";
+var userLng = ""; 
+
+// API variables:
+// var googleUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
+var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6&units=imperial';
+// var weather4Url = 'https://api.openweathermap.org/data/2.5/onecall?lat=' +userLat+ '&lon=' +userLng+ '&appid=be4771db9c53103bf67e6e18d9ddacc6';
+
 // Function for when the user selects the Weekend Getaway option
 var weekendSelect = userWeekend.click(function() {
     searchRadius=200;
@@ -189,7 +138,7 @@ function getApi(weatherUrl) {
     //   catch any errors
       .catch(function(){
       });
-    }
+    };
 
 // getApi(weatherUrl);
 
@@ -203,29 +152,67 @@ function displayWeather(data){
     var sunnyCloudy = sunCloud.charAt(0).toUpperCase() + sunCloud.slice(1);
     console.log(sunnyCloudy); 
     // Working on getting the text on results page to look right...
-    weatherNav.textContent = currentTemp + '\u00B0 F ' + sunnyCloudy;
+    weatherNav.textContent = currentTemp + '\u00B0F ' + sunnyCloudy;
 };
 
 // Converting zipcode or city and state to latitude/longitude
     // Need to pull Geocoding Service from Google Maps API: https://developers.google.com/maps/documentation/javascript/geocoding
 
-// Option 1
-// var lat = '';
-// var lng = '';
+// Lane's code for converting zipcode to lat/lng:
+function geocode(){
+    var location = userZip_test;
+    axios.get('https://maps.googleapis.com/maps/api/geocode/json?components=country:US|postal_code'+userZip_test, {
+        params: {
+            address:location,
+            key: 'AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8'
+        }
+    })
+    .then(function(response){
+        console.log(response);
+        if (response.status === 200) {
+        }
+        return response;
+    })
+    .then(function(data){
+        console.log(data);
+        return data;
+    })
+    .catch (function (error){
+        console.log(error);
+    })
+    grabLatLng(data);
+    };
+
+// Trying to figure out the right syntax to pass the right data in () 
+// - results, data and response lead to error "Uncaught Reference Error - data is not defined"
+function grabLatLng(data){
+    userLat = data.results[0].geometry.location.lat();
+    userLng = data.results[0].geometry.location.lng();
+    return [userLat, userLng];
+};
+
+console.log(userLat, userLng);
+
+geocode();
+
+
+// Example Code: Option 1
+// var latitude = '';
+// var longitude = '';
 // var address = {userZip} || {userCitystate};
 // geocoder.geocode( { 'address': address}, function(results, status) {
 //   if (status == google.maps.GeocoderStatus.OK) {
-//      lat = results[0].geometry.location.lat();
-//      lng = results[0].geometry.location.lng();
+//      latitude = results[0].geometry.location.lat();
+//      longitude = results[0].geometry.location.lng();
 //     });
 //   } else {
 //     alert("Geocode was not successful for the following reason: " + status);
 //   }
 // });
-// alert('Latitude: ' + lat + ' Logitude: ' + lng);
+// alert('Latitude: ' + latitude + ' Logitude: ' + longitude);
 
-// Option 2
-// function getLatLngByZipcode(zipcode) 
+// Example Code: Option 2
+// function getGeocode(zipcode) 
 // {
 //     var geocoder = new google.maps.Geocoder();
 //     var address = zipcode;
@@ -241,7 +228,7 @@ function displayWeather(data){
 //     return [latitude, longitude];
 // }
 
-// For Weekend Getaway
+// Get Weather data for Weekend Getaway
 // function getApi(weather4Url) {
 //     fetch(weather4Url)
 //     .then(function (response) {
@@ -252,10 +239,26 @@ function displayWeather(data){
 //     })
 //     .then(function(data){
 //         console.log(data);
+//         display4Weather(data); 
 //     })
-//   //   catch any errors
+  //   catch any errors
 //     .catch(function(){
 //     });
 //   }
+
+//     getApi(weather4Url);
+
+// function display4Weather(data){
+//     var weatherNav = document.getElementById('weather-data');
+//     var currentTemp = data.main.temp;
+//     var highTemp = 'H:' + data.main.temp_max;
+//     var lowTemp = 'L:' + data.main.temp_min;
+//     var feelsLike = 'Feels Like:' + data.main.feels_like;
+//     var sunCloud = data.weather[0].description;
+//     var sunnyCloudy = sunCloud.charAt(0).toUpperCase() + sunCloud.slice(1);
+//     console.log(sunnyCloudy); 
+//     // Working on getting the text on results page to look right...
+//     weatherNav.textContent = currentTemp + '\u00B0 F ' + sunnyCloudy;
+// };
 
 //     getApi(weather4Url);
