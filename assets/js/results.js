@@ -219,6 +219,6 @@ function clearScreen(){
 $( document ).ready(function() {
     console.log( "ready!" );
     
-    // Dropdown trigger JS
-    $(".dropdown-trigger").dropdown();
+    // Dropdown trigger JS (With Hover Dropdown)
+    $(".dropdown-trigger").dropdown({ hover: true });
 });
