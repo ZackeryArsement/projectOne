@@ -36,6 +36,28 @@ var daySelect = userDay.click(function() {
 
 });
 
+function getData(){
+    fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/cities/118499/nearbyCities?limit=10&offset=0&&minPopulation=40000&radius=100&sort=name", {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+            "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
+        }
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+            return data;
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+
+getData();
+
 // Pulling Weather API data and appending to webpage
 var userZip_test = '60660';
 // var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
@@ -98,9 +120,10 @@ function displayWeather(data){
     var feelsLike = 'Feels Like:' + data.main.feels_like;
     var sunCloud = data.weather[0].description;
     var sunnyCloudy = sunCloud.charAt(0).toUpperCase() + sunCloud.slice(1);
-    console.log(sunnyCloudy); 
+    console.log(sunnyCloudy);
+    let Temp = currentTemp.toFixed(1); 
     // Working on getting the text on results page to look right...
-    weatherNav.textContent = currentTemp + '\u00B0F ' + sunnyCloudy;
+    weatherNav.textContent = Temp + '\u00B0F ' + sunnyCloudy;
 };
 
 // Get Weather data for Weekend Getaway
