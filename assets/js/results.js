@@ -30,23 +30,12 @@ fillEmptyCards();
 
 // clearScreen();
 
-favoriteButton(3);
-favoriteButton(4);
-favoriteButton(5);
-favoriteButton(6);
-
-favoriteButton(3);
-favoriteButton(4);
-favoriteButton(5);
-favoriteButton(6);
-
 // When you click the favorite button 
-function favoriteButton(arrayNumb){
+function favoriteButton(button){
     // Assume we know the parent card of the button pressed... make it variable 'buttonParent'
-    // var buttonParent = arrayCards[arrayNumb];
+    var buttonParent = $(button).parent().parent().parent().parent().parent().parent();
 
-    var buttonParent = elem.
-    
+    // Make a clone of the card you favorited so you can put this clone in the favorite bar
     var selectedCard = buttonParent.children('#main-card').clone();
 
     // Access the location text of the card being selected
@@ -58,34 +47,37 @@ function favoriteButton(arrayNumb){
     // Change the ID of the clone card to the location of the parent card being cloned... this us allows us to know the parent card associated with each clone
     selectedCard.attr('id', newID);
 
-    // If you already have a card selected with the corresponding location in the favorites bar then remove it from the favorites bar
-    if(favoriteSelectedCards.includes(cardLocationText)){
-        console.log('You have arleady selected this card for the favorite list.');
-
-        // Access the clone in the favorites bar with the selected location and remove the card and its row
-        var deleteCard = document.getElementById(selectedCard.attr('id'));
-
-        // Don't remove the row if it is the first row
-        if(deleteCard.parentElement.id === 'favorites-first-row'){
+    // If the favorite button you selected is a parent card then add/remove a clone to the favorite sidebar
+    if(buttonParent.children().attr('id') === 'main-card'){
+        // If you already have a card selected with the corresponding location in the favorites bar then remove it from the favorites bar
+        if(favoriteSelectedCards.includes(cardLocationText)){
+            // Access the clone in the favorites bar with the selected location and remove the card and its row
+            var deleteCard = document.getElementById(selectedCard.attr('id'));
             deleteCard.remove();
 
             // Remove the location string from the selected card array
             favoriteSelectedCards.splice(favoriteSelectedCards.indexOf(cardLocationText), 1);
         }
         else{
-            deleteCard.parentElement.remove();
+            // Add the card location to the array of selected card locations
+            favoriteSelectedCards.push(cardLocationText);
 
-            // Remove the location string from the selected card array
-            favoriteSelectedCards.splice(favoriteSelectedCards.indexOf(cardLocationText), 1);
+            // Add the selected card 
+            favoriteFirstRow.append(selectedCard);
         }
     }
+    // If the favorite button you selected is a cloned card then remove the card from the sidebar
     else{
-        // Add the card location to the array of selected card locations
-        favoriteSelectedCards.push(cardLocationText);
+        // Take out the '-' in the id to match the parent cards location string
+        var cloneLocation = $(button).parent().parent().parent().parent().parent().attr('id').replaceAll("-", " ");
 
-        // Add the selected card 
-        favoriteFirstRow.append(selectedCard);
+        // Delete the clone card that the button you pressed is attached to
+        $(button).parent().parent().parent().parent().parent().remove();
+
+        // Remove the location string from the selected card array
+        favoriteSelectedCards.splice(favoriteSelectedCards.indexOf(cloneLocation, 1));
     }
+
 }
 
 // Create 9 empty duplicate cards
