@@ -46,6 +46,8 @@ function favoriteButton(button){
     // Assume we know the parent card of the button pressed... make it variable 'buttonParent'
     var buttonParent = $(button).parent().parent().parent().parent().parent().parent();
 
+    
+    
     // Make a clone of the card you favorited so you can put this clone in the favorite bar
     var selectedCard = buttonParent.children('#main-card').clone();
 
@@ -121,7 +123,7 @@ function loadEmptyCards(){
     rowCount = 0;
 
     // Duplicate the first card 9 times onto the webpage
-    for(i=0; i<9; i++){
+    for(let i=0; i<9; i++){
         //Create a new card and add it into the card array
         var newCard = firstColumn.clone();
         arrayCards[i+1] = newCard;
@@ -168,7 +170,7 @@ function loadEmptyCards(){
 
 // Create 9 objects that contains the data for each card... This will be used to organize the cards dependant on their distance value
 function createDataObjects(){
-    for(i=0; i<10; i++){
+    for(let i=0; i<10; i++){
         arrayDataObjects[i] = {
             'location': arrayLocation[i],
             'description': arrayDescription[i],
@@ -187,7 +189,7 @@ function createDataObjects(){
 
 // Fill each card with its weather, map, image, and description
 function fillEmptyCards(){
-    for(i=0; i<10; i++){
+    for(let i=0; i<10; i++){
         // Weather Description
         arrayCards[i]
             .children('#main-card')
@@ -234,14 +236,15 @@ function fillEmptyCards(){
 
 // Clear the screen of extra cards and extra rows
 function clearScreen(){
-    for(i=1; i<arrayCards.length; i++){
+    for(let i=1; i<arrayCards.length; i++){
         arrayCards[i].remove();
     }
-    for(i=0; i <(rowCount-1); i++){
+    for(let i=0; i <(rowCount-1); i++){
         arrayNewRows[i].remove();
     }
 }
 
+<<<<<<< HEAD
 function setStoredFavoritesStorageToArray(){
     // If the locally storaged string with our saved favorite locations is not empty then create an array out of the string with ',' as the delimeter
     if((favoriteSelectedCards !== ',,,,,,,,,') && (favoriteSelectedCards !== emptyArray)){
@@ -252,3 +255,12 @@ function setStoredFavoritesStorageToArray(){
         favoriteSelectedCards = emptyArray;
     }
 }
+=======
+// When Document is ready to load
+$( document ).ready(function() {
+    console.log( "ready!" );
+    
+    // Dropdown trigger JS (With Hover Dropdown)
+    $(".dropdown-trigger").dropdown({ hover: true });
+});
+>>>>>>> 53ac1fcc8cf457e77fdb1dc3c36d23d5d93d1e88
