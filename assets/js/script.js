@@ -1,51 +1,3 @@
-// Pulling API data
-// var 4day-weatherUrsl = 'pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + userZip ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
-
-// HOMEPAGE JAVASCRIPT
-
-// **things that need to happen
-// Create event listener on the cards so when they're clicked it counts as a selection
-// have submit button redirect to result page
-
-// var submitBtn = $('.submitBtn')
-// var userTrip = $('.')
-// var searchRadius
-// var tripType = $('.tripType')
-
-// submitBtn.click(function() {
-//     window.location.replace('./results.html');
-
-//     console.log('click');
-// })
-
-// console.log(submitBtn);
-
-// var tripSelection = tripType.click(function() {
-//     preventDefault(e);
-//     tripType.css('border-color', 'blue');
-//     console.log('type selct');
-// });
-
-// var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
-// // var weather4Url = 'https://pro.openweathermap.org/data/2.5/forecast/hourly?zip=' + 60660 + ',us&appid=be4771db9c53103bf67e6e18d9ddacc6';
-
-// // Get weather data for Hike and Daytrip
-// function getApi(weatherUrl) {
-//     fetch(weatherUrl)
-//       .then(function (response) {
-//         console.log(response);
-//         if (response.status === 200) {
-//           }
-//           return response.json();
-//       })
-//       .then(function(data){
-//           console.log(data);
-//       })
-//     //   catch any errors
-//       .catch(function(){
-//       });
-//  }
-
 var submitBtn = $('.submitBtn')
 var searchRadius = 0
 var searchType
@@ -140,7 +92,7 @@ function getApi(weatherUrl) {
       });
     };
 
-// getApi(weatherUrl);
+getApi(weatherUrl);
 
 function displayWeather(data){
     var weatherNav = document.getElementById('weather-data');
