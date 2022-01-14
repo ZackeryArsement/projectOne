@@ -12,7 +12,8 @@ var firstRow = $('#first-row');
 var firstColumn = $('#card-column')
 
 // Keep track of which cards have been selected for favorite bar
-var favoriteSelectedCards = [];
+var emptyArray = ['', '', '', '', '', '', '', '', '', ''];
+var favoriteSelectedCards = localStorage.getItem("favoriteSelectedCards") || emptyArray;
 
 // Keep track of the clone cards in the favorite bar
 var favoriteCardList = [];
@@ -20,9 +21,21 @@ var favoriteCardList = [];
 var favoritesCol = $('#favorites-column');
 var favoriteFirstRow = $('#favorites-first-row');
 
+// Keep track of the first rows html... if the html is ever 'undefined' then reset back to default html
+var favoriteFirstRowHtml = favoriteFirstRow.html();
+
 var rowCount;
 
+// Retrieves stored array or initializes a new one if blank nothing previously stored
+// localStorage.clear();
+var savedFavorites = localStorage.getItem("savedFavorites") || [null]
+
+//Load the saved favorites bar
+favoriteFirstRow.html(savedFavorites);
+
 // Load the cards and fill them with content
+setStoredFavoritesStorageToArray()
+clearScreen();
 createDataObjects();
 
 loadEmptyCards();
@@ -35,6 +48,8 @@ function favoriteButton(button){
     // Assume we know the parent card of the button pressed... make it variable 'buttonParent'
     var buttonParent = $(button).parent().parent().parent().parent().parent().parent();
 
+    
+    
     // Make a clone of the card you favorited so you can put this clone in the favorite bar
     var selectedCard = buttonParent.children('#main-card').clone();
 
@@ -47,6 +62,8 @@ function favoriteButton(button){
     // Change the ID of the clone card to the location of the parent card being cloned... this us allows us to know the parent card associated with each clone
     selectedCard.attr('id', newID);
 
+    var locationIndex;
+
     // If the favorite button you selected is a parent card then add/remove a clone to the favorite sidebar
     if(buttonParent.children().attr('id') === 'main-card'){
         // If you already have a card selected with the corresponding location in the favorites bar then remove it from the favorites bar
@@ -56,11 +73,15 @@ function favoriteButton(button){
             deleteCard.remove();
 
             // Remove the location string from the selected card array
-            favoriteSelectedCards.splice(favoriteSelectedCards.indexOf(cardLocationText), 1);
+            locationIndex = (favoriteSelectedCards.indexOf(cardLocationText));
+
+            favoriteSelectedCards.splice(locationIndex, 1, '');
+            localStorage.setItem('favoriteSelectedCards', favoriteSelectedCards);
         }
         else{
             // Add the card location to the array of selected card locations
-            favoriteSelectedCards.push(cardLocationText);
+            favoriteSelectedCards.splice(favoriteSelectedCards.indexOf(''), 1, cardLocationText);
+            localStorage.setItem('favoriteSelectedCards', favoriteSelectedCards);
 
             // Add the selected card 
             favoriteFirstRow.append(selectedCard);
@@ -75,9 +96,21 @@ function favoriteButton(button){
         $(button).parent().parent().parent().parent().parent().remove();
 
         // Remove the location string from the selected card array
-        favoriteSelectedCards.splice(favoriteSelectedCards.indexOf(cloneLocation, 1));
+        locationIndex = (favoriteSelectedCards.indexOf(cloneLocation));
+
+        favoriteSelectedCards.splice(locationIndex, 1, '');
+        localStorage.setItem('favoriteSelectedCards', favoriteSelectedCards);
     }
 
+    // Pull the html of the favorites row and save it to local storage
+    var favoriteRowHtml = $('#favorites-first-row').html();
+
+    //saves array as string in localstorage
+    localStorage.setItem("savedFavorites", favoriteRowHtml);
+
+    if((typeof favoriteRowHtml) === 'undefined'){
+        localStorage.setItem("savedFavorites", favoriteFirstRowHtml);
+    }
 }
 
 // Create 9 empty duplicate cards
@@ -92,7 +125,7 @@ function loadEmptyCards(){
     rowCount = 0;
 
     // Duplicate the first card 9 times onto the webpage
-    for(i=0; i<9; i++){
+    for(let i=0; i<9; i++){
         //Create a new card and add it into the card array
         var newCard = firstColumn.clone();
         arrayCards[i+1] = newCard;
@@ -139,7 +172,7 @@ function loadEmptyCards(){
 
 // Create 9 objects that contains the data for each card... This will be used to organize the cards dependant on their distance value
 function createDataObjects(){
-    for(i=0; i<10; i++){
+    for(let i=0; i<10; i++){
         arrayDataObjects[i] = {
             'location': arrayLocation[i],
             'description': arrayDescription[i],
@@ -158,7 +191,7 @@ function createDataObjects(){
 
 // Fill each card with its weather, map, image, and description
 function fillEmptyCards(){
-    for(i=0; i<10; i++){
+    for(let i=0; i<10; i++){
         // Weather Description
         arrayCards[i]
             .children('#main-card')
@@ -205,10 +238,23 @@ function fillEmptyCards(){
 
 // Clear the screen of extra cards and extra rows
 function clearScreen(){
-    for(i=1; i<arrayCards.length; i++){
+    for(let i=1; i<arrayCards.length; i++){
         arrayCards[i].remove();
     }
-    for(i=0; i <(rowCount-1); i++){
+    for(let i=0; i <(rowCount-1); i++){
         arrayNewRows[i].remove();
     }
 }
+
+function setStoredFavoritesStorageToArray(){
+    // If the locally storaged string with our saved favorite locations is not empty then create an array out of the string with ',' as the delimeter
+    if((favoriteSelectedCards !== ',,,,,,,,,') && (favoriteSelectedCards !== emptyArray)){
+        favoriteSelectedCards = localStorage.getItem("favoriteSelectedCards").split(',');
+    }
+    // If the locally stored favorites are a empty string of commas then set the stored favorite locations as an empty array
+    else if(favoriteSelectedCards === ',,,,,,,,,'){
+        favoriteSelectedCards = emptyArray;
+    }
+}
+
+

@@ -11,9 +11,6 @@ var userZipcode
 var selectedTrip = userWalk
 var zipCodeStorage = window.localStorage.setItem('zipcode','')
 
-
-
-
 // Function for when the user selects the walk option
 var walkSelect = userWalk.click(function() {
     searchRadius= 20;
@@ -95,13 +92,13 @@ submitBtn.click(function() {
 function getApi(weatherUrl) {
     fetch(weatherUrl)
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
           }
           return response.json();
       })
       .then(function(data){
-          console.log(data);
+        //   console.log(data);
           displayWeather(data);
           return data;
       })
