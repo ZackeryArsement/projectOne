@@ -11,9 +11,6 @@ var userZipcode
 var selectedTrip = userWalk
 var zipCodeStorage = window.localStorage.setItem('zipcode','')
 
-
-
-
 // Function for when the user selects the walk option
 var walkSelect = userWalk.click(function() {
     searchRadius= 20;
@@ -73,13 +70,13 @@ submitBtn.click(function() {
 function getApi(weatherUrl) {
     fetch(weatherUrl)
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
           }
           return response.json();
       })
       .then(function(data){
-          console.log(data);
+        //   console.log(data);
           displayWeather(data);
           return data;
       })
@@ -98,7 +95,7 @@ function displayWeather(data){
     var feelsLike = 'Feels Like:' + data.main.feels_like;
     var sunCloud = data.weather[0].description;
     var sunnyCloudy = sunCloud.charAt(0).toUpperCase() + sunCloud.slice(1);
-    console.log(sunnyCloudy); 
+    // console.log(sunnyCloudy); 
     // Working on getting the text on results page to look right...
     weatherNav.textContent = currentTemp + '\u00B0F ' + sunnyCloudy;
 };
