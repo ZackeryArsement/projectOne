@@ -34,7 +34,7 @@ var savedFavorites = localStorage.getItem("savedFavorites") || [null]
 favoriteFirstRow.html(savedFavorites);
 
 // Load the cards and fill them with content
-setStoredFavoritesStorageToArray()
+// setStoredFavoritesStorageToArray()
 clearScreen();
 createDataObjects();
 
@@ -244,18 +244,6 @@ function clearScreen(){
     }
 }
 
-<<<<<<< HEAD
-function setStoredFavoritesStorageToArray(){
-    // If the locally storaged string with our saved favorite locations is not empty then create an array out of the string with ',' as the delimeter
-    if((favoriteSelectedCards !== ',,,,,,,,,') && (favoriteSelectedCards !== emptyArray)){
-        favoriteSelectedCards = localStorage.getItem("favoriteSelectedCards").split(',');
-    }
-    // If the locally stored favorites are a empty string of commas then set the stored favorite locations as an empty array
-    else if(favoriteSelectedCards === ',,,,,,,,,'){
-        favoriteSelectedCards = emptyArray;
-    }
-}
-=======
 // When Document is ready to load
 $( document ).ready(function() {
     console.log( "ready!" );
@@ -263,4 +251,59 @@ $( document ).ready(function() {
     // Dropdown trigger JS (With Hover Dropdown)
     $(".dropdown-trigger").dropdown({ hover: true });
 });
->>>>>>> 53ac1fcc8cf457e77fdb1dc3c36d23d5d93d1e88
+
+
+var inputCity = 'austin';
+var cityID;
+var findCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=1&offset=0&minPopulation=100000&namePrefix=" + inputCity;
+var cityData;
+getData(findCityURL);
+function getData(URL){
+    fetch(URL, {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+            "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
+        }
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(function(data){
+            cityID = data.data[0].id.toString();
+            getCityData(cityID);
+            return data;
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+function getCityData(id){
+    var nearbyCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities/" + id + "/nearbyCities?limit=10&offset=0&radius=100&types=CITY";
+    setTimeout(function(){
+        fetch(nearbyCityURL, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+                "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
+            }
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(function(data){
+                // console.log(data);
+                cityData = data.data[0];
+                for(let i=0; i< data.data.length; i++){
+                    arrayLocation[i] = data.data[i].city;
+                }
+                console.log(arrayLocation);
+                console.log(cityData)
+                return cityData;
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    },1000);
+}
+console.log(arrayLocation);
