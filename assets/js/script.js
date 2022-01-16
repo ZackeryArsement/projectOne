@@ -33,6 +33,28 @@ var daySelect = userDay.click(function() {
 
 });
 
+function getData(){
+    fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/cities/118499/nearbyCities?limit=10&offset=0&&minPopulation=40000&radius=100&sort=name", {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+            "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
+        }
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+            return data;
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+
+getData();
+
 // Pulling Weather API data and appending to webpage
 var userZip_test = '60660';
 // var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]

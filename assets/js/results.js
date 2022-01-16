@@ -48,6 +48,8 @@ var cityData;
 getData(findCityURL);
 
 
+// clearScreen();
+
 // When you click the favorite button 
 function favoriteButton(button){
     // Assume we know the parent card of the button pressed... make it variable 'buttonParent'
