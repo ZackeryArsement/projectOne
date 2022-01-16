@@ -1,12 +1,13 @@
-var arrayLocation = ['Austin', 'Dallas', 'San Antonio', 'Houston', 'Beaumont', 'Galveston', 'Waco', 'Amarillo', 'Lubbock', 'Corpus Christi'];
+var arrayLocation = [];
 var arrayDescription = ['Austin', 'Dallas', 'San Antonio', 'Houston', 'Beaumont', 'Galveston', 'Waco', 'Amarillo', 'Lubbock', 'Corpus Christi'];
 var arrayWeather = ['Austin', 'Dallas', 'San Antonio', 'Houston', 'Beaumont', 'Galveston', 'Waco', 'Amarillo', 'Lubbock', 'Corpus Christi'];
-var arrayDistance = [1, 200, 130, 220, 350, 250, 50, 400, 375, 175]
+var arrayDistance = [];
 var arrayImages = ["./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG"];
 var arrayMap = ["./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG","./assets/images/IMG_3935.JPG"];
 var arrayCards = [];
 var arrayDataObjects = [];
 var arrayNewRows = [];
+var loadedCardLength = 0;
 
 var firstRow = $('#first-row');
 var firstColumn = $('#card-column')
@@ -36,10 +37,16 @@ favoriteFirstRow.html(savedFavorites);
 // Load the cards and fill them with content
 setStoredFavoritesStorageToArray()
 clearScreen();
-createDataObjects();
 
-loadEmptyCards();
-fillEmptyCards();
+// Fetch data
+// API Values
+var inputCity = 'austin';
+var cityID;
+var findCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=1&offset=0&minPopulation=100000&namePrefix=" + inputCity;
+var cityData;
+
+getData(findCityURL);
+
 
 // When you click the favorite button 
 function favoriteButton(button){
@@ -112,7 +119,7 @@ function favoriteButton(button){
 }
 
 // Create 9 empty duplicate cards
-function loadEmptyCards(){
+function loadEmptyCards(length){
     arrayCards[0] = firstColumn;
     // Keep track of what is the current row, so we know which row to append new rows onto
     var currentRow;
@@ -123,7 +130,7 @@ function loadEmptyCards(){
     rowCount = 0;
 
     // Duplicate the first card 9 times onto the webpage
-    for(let i=0; i<9; i++){
+    for(let i=0; i<(length-1); i++){
         //Create a new card and add it into the card array
         var newCard = firstColumn.clone();
         arrayCards[i+1] = newCard;
@@ -169,8 +176,8 @@ function loadEmptyCards(){
 }
 
 // Create 9 objects that contains the data for each card... This will be used to organize the cards dependant on their distance value
-function createDataObjects(){
-    for(let i=0; i<10; i++){
+function createDataObjects(length){
+    for(let i=0; i<length; i++){
         arrayDataObjects[i] = {
             'location': arrayLocation[i],
             'description': arrayDescription[i],
@@ -188,8 +195,8 @@ function createDataObjects(){
 }
 
 // Fill each card with its weather, map, image, and description
-function fillEmptyCards(){
-    for(let i=0; i<10; i++){
+function fillEmptyCards(length){
+    for(let i=0; i<length; i++){
         // Weather Description
         arrayCards[i]
             .children('#main-card')
@@ -244,7 +251,12 @@ function clearScreen(){
     }
 }
 
-<<<<<<< HEAD
+// When Document is ready to load
+$( document ).ready(function() {
+    // Dropdown trigger JS (With Hover Dropdown)
+    $(".dropdown-trigger").dropdown({ hover: true });
+});
+
 function setStoredFavoritesStorageToArray(){
     // If the locally storaged string with our saved favorite locations is not empty then create an array out of the string with ',' as the delimeter
     if((favoriteSelectedCards !== ',,,,,,,,,') && (favoriteSelectedCards !== emptyArray)){
@@ -255,12 +267,73 @@ function setStoredFavoritesStorageToArray(){
         favoriteSelectedCards = emptyArray;
     }
 }
-=======
-// When Document is ready to load
-$( document ).ready(function() {
-    console.log( "ready!" );
+
+function getData(URL){
+    fetch(URL, {
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+            "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
+        }
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(function(data){
+            cityID = data.data[0].id.toString();
+
+            getCityData(cityID);
+
+            return data;
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+
+function getCityData(id){
+    var nearbyCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities/" + id + "/nearbyCities?limit=10&offset=0&radius=100&types=CITY";
+            
+    setTimeout(function(){
+        fetch(nearbyCityURL, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+                "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
+            }
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(function(data){
+                var userLat;
+                var userLng;
+                var weatherUrl2;
+
+                loadedCardLength = data.data.length;
+                console.log(loadedCardLength);
+
+                for(let i=0; i< loadedCardLength; i++){
+                    cityData = data.data[i];
+                    arrayLocation[i] = cityData.city;
+                    arrayDistance[i] = cityData.distance;
+
+                    userLat = cityData.latitude;
+                    userLng = cityData.longitude;
+                    weatherUrl2 = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + userLat + '&lon=' + userLng + '&appid=be4771db9c53103bf67e6e18d9ddacc6&units=imperial';
+
+                    var index = i;
+
+                    getApi(weatherUrl2, index);
+                }
+
+                createDataObjects(loadedCardLength);
+                loadEmptyCards(loadedCardLength);
+                fillEmptyCards(loadedCardLength);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+    },1500);
     
-    // Dropdown trigger JS (With Hover Dropdown)
-    $(".dropdown-trigger").dropdown({ hover: true });
-});
->>>>>>> 53ac1fcc8cf457e77fdb1dc3c36d23d5d93d1e88
+}
