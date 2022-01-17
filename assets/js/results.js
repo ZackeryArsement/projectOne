@@ -275,13 +275,15 @@ function getData(URL){
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-            "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
+            "x-rapidapi-key":"dc52e1306fmsh499b745225e0ed7p1f9230jsnd35ba4c60dc2" //this is the key for the paid subscription
+            // "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
         }
         })
         .then(response => {
             return response.json();
         })
         .then(function(data){
+            console.log(data);
             cityID = data.data[0].id.toString();
 
             getCityData(cityID);
@@ -301,7 +303,8 @@ function getCityData(id){
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-                "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
+                "x-rapidapi-key":"dc52e1306fmsh499b745225e0ed7p1f9230jsnd35ba4c60dc2" //this is the key for the paid subscription
+                // "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
             }
             })
             .then(response => {
@@ -310,7 +313,7 @@ function getCityData(id){
             .then(function(data){
                 var userLat;
                 var userLng;
-                var weatherUrl2;
+                var weatherUrl;
 
                 loadedCardLength = data.data.length;
                 console.log(loadedCardLength);
@@ -322,11 +325,11 @@ function getCityData(id){
 
                     userLat = cityData.latitude;
                     userLng = cityData.longitude;
-                    weatherUrl2 = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + userLat + '&lon=' + userLng + '&appid=be4771db9c53103bf67e6e18d9ddacc6&units=imperial';
+                    weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + userLat + '&lon=' + userLng + '&appid=be4771db9c53103bf67e6e18d9ddacc6&units=imperial';
 
                     var index = i;
 
-                    getApi(weatherUrl2, index);
+                    getApi(weatherUrl, index);
                 }
 
                 createDataObjects(loadedCardLength);
