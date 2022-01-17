@@ -24,6 +24,8 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
     <!-- Results navbar -->
     <div class='navbar-fixed'>
       <!-- Dropdown Structure -->
+
+      
       <ul id="dropdown1" class="dropdown-content">
         <li><a href="#!"><i class="material-icons">arrow_forward</i>one</a></li>
         <li><a href="#!"><i class="material-icons">arrow_forward</i>two</a></li>
@@ -41,8 +43,27 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
               <!-- Dropdown Trigger -->
               <li><a class="dropdown-trigger btn" id="custom-dropBtn" href="#!" data-target="dropdown1">Drop Me!<i
                     class="material-icons right"></i></a></li>
+              <li>
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Favorites</a>
+              </li>
             </ul>
+
+            <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
+
+            <!-- Modal Structure -->
+            
+            <div id="modal1" class="modal">
+              <div class="modal-content">
+                <h4>Modal Header</h4>
+                <p>A bunch of text</p>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+              </div>
+            </div>
           </div>
+
+          
       </nav>
     </div>
   </div>
