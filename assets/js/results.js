@@ -12,6 +12,8 @@ var loadedCardLength = 0;
 var firstRow = $('#first-row');
 var firstColumn = $('#card-column')
 
+var logoButton = $('#custom-header2')
+
 // Keep track of which cards have been selected for favorite bar
 var emptyArray = ['', '', '', '', '', '', '', '', '', ''];
 var favoriteSelectedCards = localStorage.getItem("favoriteSelectedCards") || emptyArray;
@@ -342,3 +344,16 @@ function getCityData(id){
     },1500);
     
 }
+
+
+
+  // Or with jQuery
+
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+
+  logoButton.click(function() {
+    window.location.href='./index.html';
+
+});
