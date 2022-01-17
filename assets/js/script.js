@@ -7,9 +7,9 @@ var userWalk = $('#userWalk')
 var userDay = $('#userDay')
 var userWeekend = $('#userWeekend')
 var tripSelection
-var userZipcode
+var userLocation
 var selectedTrip = userWalk
-var zipCodeStorage = window.localStorage.setItem('zipcode','')
+var zipCodeStorage = window.localStorage.setItem('city','')
 
 // Function for when the user selects the walk option
 var walkSelect = userWalk.click(function() {
