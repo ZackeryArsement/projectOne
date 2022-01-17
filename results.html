@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link href="./assets/css/reset.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Let's Get Outta Here!</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="./assets/css/reset.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <title>Let's Get Outta Here!</title>
+</head>
 
-  <body style="background-image: url(./assets/images/trees_overview_medres.jpeg); 
+<body style="background-image: url(./assets/images/trees_overview_medres.jpeg); 
   background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
 
-<div class="banner-image2" style="background-image: url(./assets/images/cloud-portrait.jpeg); 
+  <div class="banner-image2" style="background-image: url(./assets/images/cloud-portrait.jpeg); 
 background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
     <!-- Results navbar -->
     <div class='navbar-fixed'>
@@ -29,95 +32,100 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
         <li><a href="#!"><i class="material-icons">arrow_forward</i>four</a></li>
         <li><a href="#!"><i class="material-icons">arrow_forward</i>five</a></li>
       </ul>
-     
-    <nav id="custom-nav2">
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo" id="custom-header2">Location</a>
-          <div class = "dropdown">
+
+      <nav id="custom-nav2">
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo" id="custom-header2">Location</a>
+          <div class="dropdown">
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <!-- Dropdown Trigger -->
-            <li><a class="dropdown-trigger btn" id="custom-dropBtn" href="#!" data-target="dropdown1">Drop Me!<i class="material-icons right"></i></a></li>
-          </ul>
-        </div>
+              <!-- Dropdown Trigger -->
+              <li><a class="dropdown-trigger btn" id="custom-dropBtn" href="#!" data-target="dropdown1">Drop Me!<i
+                    class="material-icons right"></i></a></li>
+            </ul>
+          </div>
       </nav>
     </div>
   </div>
 
-    <div class='row'>
-                    
-      <!-- Column with all the cards -->
-      <div class="col s12 m9">
-        <!-- Parent Row... Two cards in each row -->
-        <div class="row" id='first-row'>
-  
-          <!-- First Card Column -->
-          <div class="col s12 m6" id='card-column'>
-  
-            <!-- First Card -->
-            <div class="card darken-1" id='main-card'>
-  
-              <!-- Top of Card Content -->
-              <div class="card-content" id='top-card'>
-  
-                  <!-- Weather navbar -->
-                  <nav id='weather-nav' style="background-image: url(./assets/images/clouds_white_medres.jpeg); 
+  <div class='row'>
+
+    <!-- Column with all the cards -->
+    <div class="col s12 m9">
+      <!-- Parent Row... Two cards in each row -->
+      <div class="row" id='first-row'>
+
+        <!-- First Card Column -->
+        <div class="col s12 m6" id='card-column'>
+
+          <!-- First Card -->
+          <div class="card darken-1" id='main-card'>
+
+            <!-- Top of Card Content -->
+            <div class="card-content" id='top-card'>
+
+              <!-- Weather navbar -->
+              <nav id='weather-nav' style="background-image: url(./assets/images/clouds_white_medres.jpeg); 
                   background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
-                    <p class="brand-logo" id="weather-header">Sun</p>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                      <li><p id="weather-data">The Weather is beautiful</p></li>
-                    </ul>
-                  </nav>
-                  
-                  <!-- Map on Card -->
-                  <div class="col s12 m6" id='map-column'>
-                    <div class="card" id='map-card'>
-                      <div class="card-image" id='map-image'>
-                        <img src="./assets/images/IMG_3935.JPG">
-                      </div>
-                    </div>
+                <p class="brand-logo" id="weather-header">Sun</p>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li>
+                    <p id="weather-data">The Weather is beautiful</p>
+                  </li>
+                </ul>
+              </nav>
+
+              <!-- Map on Card -->
+              <div class="col s12 m6" id='map-column'>
+                <div class="card" id='map-card'>
+                  <div class="card-image" id='map-image'>
+                    <img src="./assets/images/IMG_3935.JPG">
                   </div>
-                  
-                  <!-- Image on Card -->
-                  <div class="col s12 m6" id='image-column'>
-                    <div class="card" id='image-card'>
-                      <div class="card-image" id='image-image'>
-                        <img src="./assets/images/IMG_3935.JPG">
-                        <!-- Favorites Button -->
-                        <button class="btn-floating halfway-fab waves-effect waves-light red" onclick="favoriteButton(this)"><i class="material-icons">&heartsuit;</i></button>
-                      </div>
-                    </div>
+                </div>
+              </div>
+
+              <!-- Image on Card -->
+              <div class="col s12 m6" id='image-column'>
+                <div class="card" id='image-card'>
+                  <div class="card-image" id='image-image'>
+                    <img src="./assets/images/IMG_3935.JPG">
+                    <!-- Favorites Button -->
+                    <button class="btn-floating halfway-fab waves-effect waves-light red"
+                      onclick="favoriteButton(this)"><i class="material-icons">&heartsuit;</i></button>
                   </div>
-  
+                </div>
               </div>
-  
-              <!-- Location Description -->
-              <div class="card-content white-text" id='card-description'>
-                <span class="card-title">Location Description</span>
-                <p>This place is totally wicked! Highly recommend traveling to this location!</p>
-              </div>
-  
+
             </div>
+
+            <!-- Location Description -->
+            <div class="card-content white-text" id='card-description'>
+              <span class="card-title">Location Description</span>
+              <p>This place is totally wicked! Highly recommend traveling to this location!</p>
+            </div>
+
           </div>
         </div>
       </div>
-      
-      <!-- --------- Column with favorites --------- -->
-      <div class="col s12 m3" id='favorites-column'>
+    </div>
 
-        <!-- Parent Row... One cards in each row -->
-        <div class="row" id='favorites-first-row'>
-          <!-- Insert card here -->
-          <!-- Create a new row every time you add a new favorites card -->
-        </div>
+    <!-- --------- Column with favorites --------- -->
+    <div class="col s12 m3" id='favorites-column'>
+
+      <!-- Parent Row... One cards in each row -->
+      <div class="row" id='favorites-first-row'>
+        <!-- Insert card here -->
+        <!-- Create a new row every time you add a new favorites card -->
       </div>
     </div>
-    
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/results.js"></script>
-  </body>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/results.js"></script>
+</body>
 
 </html>
