@@ -133,9 +133,14 @@ font-weight: bold;
 /* Adding blur to background image on results page */
 .blur {
     background: rgba(236, 252, 227, 0.4); // Make sure this color has an opacity of less than 1
+<<<<<<< HEAD
     backdrop-filter: blur(30px);
 } 
 
 li {
     font-size: 0.8rem;
 }
+=======
+    backdrop-filter: blur(20px);
+} 
+>>>>>>> a7e5b4d (updating style - 2nd try)
