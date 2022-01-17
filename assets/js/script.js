@@ -90,5 +90,5 @@ function displayWeather(data, index){
   currentF[index].textContent = Temp + '\u00B0F '
 //   Still need to correct spacing & embed weather icon - var iconUrl - into html 
   weatherDescrip[index].textContent = sunnyCloudy;
-  weatherHiLo[index].textContent = 'H: ' + highF + '\u00B0 L: ' +lowF + '\u00B0';
+  weatherHiLo[index].textContent = ' H: ' + highF + '\u00B0 L: ' +lowF + '\u00B0';
 };
