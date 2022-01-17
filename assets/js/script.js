@@ -33,40 +33,6 @@ var daySelect = userDay.click(function() {
 
 });
 
-function getData(){
-    fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/cities/118499/nearbyCities?limit=10&offset=0&&minPopulation=40000&radius=100&sort=name", {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-            "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
-        }
-        })
-        .then(response => {
-            return response.json();
-        })
-        .then(function(data){
-            console.log(data);
-            return data;
-        })
-        .catch(err => {
-            console.error(err);
-        });
-}
-
-getData();
-
-// Pulling Weather API data and appending to webpage
-var userZip_test = '60660';
-// var userZip = document.getElementbyID("user-location"); [user input - this will replace the userZip_test above]
-// var userChoice = [condition onclick - userHike, userDaytrip, or userGetaway]
-// var userHike = userZip + 20 miles radius search (Parks)
-// var userDaytrip = userZip + 75 miles radius search (Restaurants, Museums, Parks, Events?)
-// var userGetaway = userZip + 200 miles radius search (Cities & Parks)
-
-// API variables:
-// var googleUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD2j53y5S7r1DhmM9s62cuB-vC0mPX9TQ8&callback=initMap';
-var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6&units=imperial';
-
 // Function for when the user selects the Weekend Getaway option
 var weekendSelect = userWeekend.click(function() {
     searchRadius=200;
@@ -85,7 +51,7 @@ submitBtn.click(function() {
 
 });
 
-// Get weather data for Hike and Daytrip
+// Get Weather data for results page
 function getApi(weatherUrl, index) {
     fetch(weatherUrl)
       .then(function (response) {
@@ -94,6 +60,7 @@ function getApi(weatherUrl, index) {
           return response.json();
       })
       .then(function(data){
+          console.log (data)
           displayWeather(data, index);
           return data;
       })
@@ -102,65 +69,26 @@ function getApi(weatherUrl, index) {
       });
     };
 
-    // getApi(weatherUrl);
+    // getApi(weatherUrl2);
 
-// function displayWeather(data){
-//     var weatherNav = document.getElementById('weather-data');
-//     var currentTemp = data.main.temp;
-//     var highTemp = 'H:' + data.main.temp_max;
-//     var lowTemp = 'L:' + data.main.temp_min;
-//     var feelsLike = 'Feels Like:' + data.main.feels_like;
-//     var sunCloud = data.weather[0].description;
-//     var sunnyCloudy = sunCloud.charAt(0).toUpperCase() + sunCloud.slice(1);
-//     // console.log(sunnyCloudy); 
-//     // Working on getting the text on results page to look right...
-//     weatherNav.textContent = currentTemp + '\u00B0F ' + sunnyCloudy;
-// };
-
-// Zack's function
+// Zack's function - Function to display weather data on results page
 function displayWeather(data, index){
-  var weatherNav = document.getElementsByClassName('weather-data');
+  var currentF = document.getElementsByClassName('currentF');
+  var weatherDescrip = document.getElementsByClassName('weather-description');
+  var weatherHiLo = document.getElementsByClassName('weather-HiLo');
   var currentTemp = data.current.temp;
-  var highTemp = 'H:' + data.daily[0].temp.max;
-  var lowTemp = 'L:' + data.daily[0].temp.min;
+  var iconCode = data.current.weather[0].icon;
+  var iconUrl = 'http://openweathermap.org/img/w/' + iconCode + '.png';
+  var highTemp = data.daily[0].temp.max;
+  var lowTemp = data.daily[0].temp.min;
   var feelsLike = 'Feels Like:' + data.current.feels_like;
   var sunCloud = data.current.weather[0].description;
   var sunnyCloudy = sunCloud.charAt(0).toUpperCase() + sunCloud.slice(1);
-  // Working on getting the text on results page to look right...
-  weatherNav[index].textContent = currentTemp + '\u00B0F ' + sunnyCloudy;
+  let Temp = currentTemp.toFixed(1);
+  let highF = highTemp.toFixed(1);
+  let lowF = lowTemp.toFixed(1);
+  currentF[index].textContent = Temp + '\u00B0F '
+//   Still need to correct spacing & embed weather icon - var iconUrl - into html 
+  weatherDescrip[index].textContent = sunnyCloudy;
+  weatherHiLo[index].textContent = 'H: ' + highF + '\u00B0 L: ' +lowF + '\u00B0';
 };
-
-// Get Weather data for Weekend Getaway
-// function getApi(weather4Url) {
-//     fetch(weather4Url)
-//     .then(function (response) {
-//       console.log(response);
-//       if (response.status === 200) {
-//         }
-//         return response.json();
-//     })
-//     .then(function(data){
-//         console.log(data);
-//         display4Weather(data); 
-//     })
-  //   catch any errors
-//     .catch(function(){
-//     });
-//   }
-
-//     getApi(weather4Url);
-
-// function display4Weather(data){
-//     var weatherNav = document.getElementById('weather-data');
-//     var currentTemp = data.main.temp;
-//     var highTemp = 'H:' + data.main.temp_max;
-//     var lowTemp = 'L:' + data.main.temp_min;
-//     var feelsLike = 'Feels Like:' + data.main.feels_like;
-//     var sunCloud = data.weather[0].description;
-//     var sunnyCloudy = sunCloud.charAt(0).toUpperCase() + sunCloud.slice(1);
-//     console.log(sunnyCloudy); 
-//     // Working on getting the text on results page to look right...
-//     weatherNav.textContent = currentTemp + '\u00B0 F ' + sunnyCloudy;
-// };
-
-//     getApi(weather4Url);

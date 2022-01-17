@@ -85,3 +85,7 @@ width: 100%;
     border: 5px;
     border-color: blue;
 }
+
+li {
+    font-size: 0.8rem;
+}
