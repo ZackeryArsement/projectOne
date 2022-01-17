@@ -18,7 +18,7 @@ var walkSelect = userWalk.click(function() {
 
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userWalk;
-    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
+    selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
 
 })
 
@@ -29,7 +29,7 @@ var daySelect = userDay.click(function() {
 
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userDay;
-    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
+    selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
 
 });
 
@@ -39,7 +39,7 @@ var weekendSelect = userWeekend.click(function() {
     searchType = userType[2];
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userWeekend;
-    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
+    selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
 
 });
 

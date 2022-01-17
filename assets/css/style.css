@@ -9,6 +9,7 @@
 
 body {
     background-color: var(--beige);
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .banner-image {
@@ -16,15 +17,31 @@ body {
     height: 200px;
 }
 
+.banner-image2 {
+    padding: 30px 0px 10px 0px;
+    height: 125px;
+}
+
 #custom-nav {
     background-color: var(--teal);
     margin-top: 40px;
 }
 
+#custom-nav2 {
+    background-color: var(--orange);
+}
+
 #custom-header {
-    color: var(--yellow);
+    color:var(--yellow);
     font-style: oblique;
     font-weight: bolder;
+}
+
+#custom-header2 {
+    color: var(--beige);
+    font-style: oblique;
+    font-weight: bolder;
+    margin-left: 20px;
 }
 
 #user-location {
@@ -85,6 +102,34 @@ width: 100%;
     border: 5px;
     border-color: blue;
 }
+
+#custom-dropBtn {
+    background-color: var(--teal);
+    color: var(--yellow);
+    font-weight: bold;
+    /* margin-top: 10px; */
+}
+
+#weather-nav {
+    color: var(--darkblue);
+    font-weight: bold;
+}
+
+#weather-header { 
+color: var(--darkblue);
+font-weight: bold;
+}
+
+#main-card {
+    background-color: var(--teal);
+    
+}
+
+/* Adding blur to background image on results page */
+.blur {
+    background: rgba(236, 252, 227, 0.4); // Make sure this color has an opacity of less than 1
+    backdrop-filter: blur(30px);
+} 
 
 li {
     font-size: 0.8rem;
