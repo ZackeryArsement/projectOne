@@ -130,3 +130,7 @@ font-weight: bold;
     background: rgba(236, 252, 227, 0.4); // Make sure this color has an opacity of less than 1
     backdrop-filter: blur(30px);
 } 
+
+li {
+    font-size: 0.8rem;
+}
