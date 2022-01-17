@@ -124,3 +124,9 @@ font-weight: bold;
     background-color: var(--teal);
     
 }
+
+/* Adding blur to background image on results page */
+.blur {
+    background: rgba(236, 252, 227, 0.4); // Make sure this color has an opacity of less than 1
+    backdrop-filter: blur(30px);
+} 
