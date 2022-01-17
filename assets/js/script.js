@@ -88,7 +88,7 @@ function displayWeather(data, index){
   let highF = highTemp.toFixed(1);
   let lowF = lowTemp.toFixed(1);
   currentF[index].textContent = Temp + '\u00B0F '
-//   Still need to correct spacing & embed weather icon - var iconUrl - into html 
+  //   Still need to correct spacing & embed weather icon - var iconUrl - into html 
   weatherDescrip[index].textContent = sunnyCloudy;
   weatherHiLo[index].textContent = ' H: ' + highF + '\u00B0 L: ' +lowF + '\u00B0';
 };
