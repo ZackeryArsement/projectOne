@@ -13,8 +13,11 @@
     <title>Let's Get Outta Here!</title>
   </head>
 
-  <body>
+  <body style="background-image: url(./assets/images/trees_overview_medres.jpeg); 
+  background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
 
+<div class="banner-image2" style="background-image: url(./assets/images/cloud-portrait.jpeg); 
+background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
     <!-- Results navbar -->
     <div class='navbar-fixed'>
       <!-- Dropdown Structure -->
@@ -27,17 +30,18 @@
         <li><a href="#!"><i class="material-icons">arrow_forward</i>five</a></li>
       </ul>
      
-    <nav>
+    <nav id="custom-nav2">
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Location</a>
+        <a href="#!" class="brand-logo" id="custom-header2">Location</a>
           <div class = "dropdown">
             <ul id="nav-mobile" class="right hide-on-med-and-down">
             <!-- Dropdown Trigger -->
-            <li><a class="dropdown-trigger btn-large cyan" href="#!" data-target="dropdown1">Drop Me!<i class="material-icons right"></i></a></li>
+            <li><a class="dropdown-trigger btn" id="custom-dropBtn" href="#!" data-target="dropdown1">Drop Me!<i class="material-icons right"></i></a></li>
           </ul>
         </div>
       </nav>
     </div>
+  </div>
 
     <div class='row'>
                     
@@ -50,14 +54,15 @@
           <div class="col s12 m6" id='card-column'>
   
             <!-- First Card -->
-            <div class="card blue-grey darken-1" id='main-card'>
+            <div class="card darken-1" id='main-card'>
   
               <!-- Top of Card Content -->
               <div class="card-content" id='top-card'>
   
                   <!-- Weather navbar -->
-                  <nav id='weather-nav'>
-                    <p class="brand-logo">Sun</p>
+                  <nav id='weather-nav' style="background-image: url(./assets/images/clouds_white_medres.jpeg); 
+                  background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
+                    <p class="brand-logo" id="weather-header">Sun</p>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                       <li><p id="weather-data">The Weather is beautiful</p></li>
                     </ul>

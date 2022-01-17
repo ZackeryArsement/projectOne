@@ -18,7 +18,7 @@ var walkSelect = userWalk.click(function() {
 
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userWalk;
-    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
+    selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
 
 })
 
@@ -29,10 +29,29 @@ var daySelect = userDay.click(function() {
 
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userDay;
-    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
+    selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
 
 });
 
+// Function for when the user selects the Weekend Getaway option
+var weekendSelect = userWeekend.click(function() {
+    searchRadius=200;
+    searchType = userType[2];
+    selectedTrip.css('box-shadow', 'none');
+    selectedTrip = userWeekend;
+    selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
+
+});
+
+// Function for what happens when the user clicks the button to show them the trips
+submitBtn.click(function() {
+    userZipcode = $('#user-location').val();
+    window.localStorage.setItem('zipcode', userZipcode);
+    window.location.href='./results.html';
+
+});
+
+// Function for getting longitude & latitude of nearby cities via radius search from a specific city location
 function getData(){
     fetch("https://wft-geo-db.p.rapidapi.com/v1/geo/cities/118499/nearbyCities?limit=10&offset=0&&minPopulation=40000&radius=100&sort=name", {
         "method": "GET",
@@ -70,24 +89,6 @@ var userLng = "";
 var weatherUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=' +userZip_test+ ',us&appid=be4771db9c53103bf67e6e18d9ddacc6&units=imperial';
 // var weather4Url = 'https://api.openweathermap.org/data/2.5/onecall?lat=' +userLat+ '&lon=' +userLng+ '&appid=be4771db9c53103bf67e6e18d9ddacc6';
 
-// Function for when the user selects the Weekend Getaway option
-var weekendSelect = userWeekend.click(function() {
-    searchRadius=200;
-    searchType = userType[2];
-    selectedTrip.css('box-shadow', 'none');
-    selectedTrip = userWeekend;
-    selectedTrip.css('box-shadow', '0 0 10px 10px blue');
-
-});
-
-// Function for what happens when the user clicks the button to show them the trips
-submitBtn.click(function() {
-    userZipcode = $('#user-location').val();
-    window.localStorage.setItem('zipcode', userZipcode);
-    window.location.href='./results.html';
-
-});
-
 // Get weather data for Hike and Daytrip
 function getApi(weatherUrl) {
     fetch(weatherUrl)
@@ -119,7 +120,6 @@ function displayWeather(data){
     var sunnyCloudy = sunCloud.charAt(0).toUpperCase() + sunCloud.slice(1);
     console.log(sunnyCloudy);
     let Temp = currentTemp.toFixed(1); 
-    // Working on getting the text on results page to look right...
     weatherNav.textContent = Temp + '\u00B0F ' + sunnyCloudy;
 };
 
