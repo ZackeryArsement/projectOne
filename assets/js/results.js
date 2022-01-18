@@ -353,7 +353,7 @@ function getCityData(id){
     
 }
 
-  // Or with jQuery
+// Or with jQuery
 
   $(document).ready(function(){
     $('.modal').modal();
@@ -361,5 +361,4 @@ function getCityData(id){
 
   logoButton.click(function() {
     window.location.href='./index.html';
-
 });
