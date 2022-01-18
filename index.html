@@ -79,8 +79,18 @@
     </div>
   </div>
 
+    <!-- Modal Structure -->
+    <div id="alertModal" class="modal">
+      <div class="modal-content">
+        <h4>Please enter your location and select the type of trip you'd like</h4>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+      </div>
+    </div>
+
   <box textAlign="center">
-    <button class="btn waves-effect waves-light submitBtn" type="submit" name="action" id="custom-homeBtn">Find your
+    <button data-target='alertModal' class="btn waves-effect waves-light modal-trigger submitBtn" type="submit" name="action" id="custom-homeBtn">Find your
       destination!
       <i class="material-icons right"></i>
     </button>
