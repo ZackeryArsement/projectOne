@@ -11,6 +11,7 @@ var userZipcode
 var selectedTrip = userWalk
 var zipCodeStorage = window.localStorage.setItem('zipcode','')
 
+
 // Function for when the user selects the walk option
 var walkSelect = userWalk.click(function() {
     searchRadius= 20;
@@ -45,10 +46,20 @@ var weekendSelect = userWeekend.click(function() {
 
 // Function for what happens when the user clicks the button to show them the trips
 submitBtn.click(function() {
-    userZipcode = $('#user-location').val();
-    window.localStorage.setItem('zipcode', userZipcode);
+  userZipcode = $('#user-location').val();
+  window.localStorage.setItem('zipcode', userZipcode);
+  if ((userZipcode != '') && (searchRadius !== 0)) {
+    
+    // userZipcode = $('#user-location').val();
+    // window.localStorage.setItem('zipcode', userZipcode);
     window.location.href='./results.html';
-
+    } else {
+    console.log('Please enter your location and select your trip type')
+    document.addEventListener('.submitBtn', function() {
+      document.querySelector('#alertModal').open();
+      
+    });
+    }
 });
 
 // Get Weather data for results page
