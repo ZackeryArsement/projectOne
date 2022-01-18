@@ -46,7 +46,7 @@ var daySelect = userDay.click(function() {
     }
 
     console.log(localStorage);
-    searchCity();
+    // searchCity();
 });
 
 // Function for when the user selects the Weekend Getaway option
@@ -73,7 +73,7 @@ var weekendSelect = userWeekend.click(function() {
       localStorage.setItem('searchRadius', searchRadius);
     }
     console.log(localStorage);
-    searchCity();
+    // searchCity();
 });
 
 // Get Weather data for results page
