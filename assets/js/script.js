@@ -76,9 +76,6 @@ var weekendSelect = userWeekend.click(function() {
     searchCity();
 });
 
-// When you click the search butotn on the default screen, then the window stores that input into local storage and switches the html to the results page html
-// submitBtn.click(searchCity());
-
 // Get Weather data for results page
 function getApi(weatherUrl, index) {
     fetch(weatherUrl)
@@ -94,7 +91,7 @@ function getApi(weatherUrl, index) {
     //   catch any errors
       .catch(function(){
       });
-    };
+};
 
 // Function to display weather data on results page
 function displayWeather(data, index){
@@ -158,6 +155,7 @@ function locationMapImage(city, index){
   });
 }
 
+// When you click the search butotn on the default screen, then the window stores that input into local storage and switches the html to the results page html
 function searchCity(){
   citySearch = $('#user-location').val();
 
