@@ -18,7 +18,7 @@ body {
 }
 
 .banner-image2 {
-    padding: 30px 0px 10px 0px;
+    padding: 0px 0px 10px 0px;
     height: 125px;
 }
 
@@ -44,9 +44,9 @@ body {
     margin-left: 20px;
 }
 
-#user-location {
+/* #user-location {
     text
-}
+} */
 
 /* .selectCards {
     background-color: var(--beige);
@@ -121,18 +121,19 @@ width: 100%;
 }
 
 #weather-header { 
-color: var(--darkblue);
-font-weight: bold;
+    color: var(--darkblue);
+    font-weight: bold;
 }
 
-#main-card {
+.results-card {
     background-color: var(--teal);
     
 }
 
 /* Adding blur to background image on results page */
 .blur {
-    background: rgba(236, 252, 227, 0.4); // Make sure this color has an opacity of less than 1
+    /* Make sure this color has an opacity of less than 1 */
+    background: rgba(236, 252, 227, 0.4); 
     backdrop-filter: blur(30px);
 } 
 
