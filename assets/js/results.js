@@ -43,7 +43,6 @@ var searchRadius = 300; // Miles
 // When the results html loads up then load in all the result cards associated with the input city and input search type
 function loadResultsPage(){
     inputCity = window.localStorage.getItem('citySearch');
-    console.log(window.localStorage)
 
     // Put the searched city in the navbar of the results page... Make sure it is capitalized
     $('#nav-location')[0].innerText = inputCity.charAt(0).toUpperCase() + inputCity.slice(1).toLowerCase();
