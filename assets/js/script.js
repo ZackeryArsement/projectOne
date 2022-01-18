@@ -44,9 +44,6 @@ var daySelect = userDay.click(function() {
     else{
       localStorage.setItem('searchRadius', searchRadius);
     }
-
-    console.log(localStorage);
-    // searchCity();
 });
 
 // Function for when the user selects the Weekend Getaway option
@@ -72,8 +69,6 @@ var weekendSelect = userWeekend.click(function() {
     else{
       localStorage.setItem('searchRadius', searchRadius);
     }
-    console.log(localStorage);
-    // searchCity();
 });
 
 // Get Weather data for results page
@@ -129,7 +124,7 @@ function locationMapImage(city, index){
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "google-maps-geocoding-plus.p.rapidapi.com",
-      "x-rapidapi-key": '2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15'
+      "x-rapidapi-key": '9255887eb5msh9ac0f92f92b85e6p171474jsn9a553aea0426'
     }
   })
   .then(response => {
