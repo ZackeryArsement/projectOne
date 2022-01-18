@@ -1,137 +1,155 @@
 /* Color Palette - "Funky Geometry" from Adobe Color- in Hex */
 :root {
-    --darkblue: #212940;
-    --teal: #2DA69A;
-    --yellow: #F2BE22;
-    --beige: #F2EAD0;
-    --orange: #F25835;
- }
- 
- body {
-     background-color: var(--beige);
-     font-family: 'Ubuntu', sans-serif;
- }
- 
- .banner-image {
-     padding: 10px 0px 10px 0px;
-     height: 200px;
- }
- 
- .banner-image2 {
-     padding: 30px 0px 10px 0px;
-     height: 125px;
- }
- 
- #custom-nav {
-     background-color: var(--teal);
-     margin-top: 40px;
- }
- 
- #custom-nav2 {
-     background-color: var(--orange);
- }
- 
- #custom-header {
-     color: var(--yellow);
-     font-style: oblique;
-     font-weight: bolder;
- }
- 
- #custom-header2 {
-     color: var(--beige);
-     font-style: oblique;
-     font-weight: bolder;
-     margin-left: 20px;
- }
- 
- /* #user-location {
-     text
- } */
- 
- /* .selectCards {
-     background-color: var(--beige);
-     padding: 10px;
- } */
- 
- .row{
-     margin-bottom: 0;
- }
- 
- .card .card-content{
-     padding-bottom: 0;
-     padding-top: 10px;
- }
- 
- nav{
-     padding-left: 20px;
-     padding-right: 20px;
- }
- 
- .custom-cardTitle {
-     color: var(--beige);
- }
- 
- .submitBtn {
-     display: block;
-     margin: auto;
- }
- 
- #custom-homeBtn {
-     background-color: var(--orange);
-     color: var(--beige);
-     font-weight: bold;
-     margin-top: 10px;
- }
- 
- /* styles for the map id */
- #map {
- text-align: center;
- height: 500px;
- width: 100%;
- }
- 
- .uLoc {
-     width: 10%;
- }
- 
- .homepage{
-     background-color: skyblue;
- }
- 
- .tripType:hover {
-     border: 5px;
-     border-color: blue;
- }
- 
- #custom-dropBtn {
-     background-color: var(--teal);
-     color: var(--yellow);
-     font-weight: bold;
-     /* margin-top: 10px; */
- }
- 
- #weather-nav {
-     color: var(--darkblue);
-     font-weight: bold;
- }
- 
- #weather-header { 
- color: var(--darkblue);
- font-weight: bold;
- }
- 
- #main-card {
-     background-color: var(--teal);
-     
- }
- 
- /* Adding blur to background image on results page */
- .blur {
-     background: rgba(236, 252, 227, 0.2);
-     backdrop-filter: blur(10px);
- } 
- 
- li {
-     font-size: 0.8rem;
-     margin-left: 10px;
- }
+   --darkblue: #212940;
+   --teal: #2DA69A;
+   --yellow: #F2BE22;
+   --beige: #F2EAD0;
+   --orange: #F25835;
+}
+
+body {
+    background-color: var(--beige);
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.banner-image {
+    padding: 10px 0px 10px 0px;
+    height: 200px;
+}
+
+.banner-image2 {
+    padding: 30px 0px 10px 0px;
+    height: 125px;
+}
+
+#custom-nav {
+    background-color: var(--teal);
+    margin-top: 40px;
+}
+
+#custom-nav2 {
+    background-color: var(--orange);
+}
+
+#custom-header {
+    color:var(--yellow);
+    font-style: oblique;
+    font-weight: bolder;
+}
+
+#custom-header2 {
+    color: var(--beige);
+    font-style: oblique;
+    font-weight: bolder;
+    margin-left: 20px;
+}
+
+#user-location {
+    text
+}
+
+/* .selectCards {
+    background-color: var(--beige);
+    padding: 10px;
+} */
+
+.row{
+    margin-bottom: 0;
+}
+
+.card .card-content{
+    padding-bottom: 0;
+    padding-top: 10px;
+}
+
+nav{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.custom-cardTitle {
+    color: var(--beige);
+}
+
+.submitBtn {
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+#custom-homeBtn {
+    background-color: var(--orange);
+    color: var(--beige);
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* styles for the map id */
+#map {
+text-align: center;
+height: 500px;
+width: 100%;
+}
+
+.pageTitle {
+    font-size: 36px;
+}
+
+.uLoc {
+    width: 25%;
+}
+
+.homepage{
+    background-color: skyblue;
+}
+
+.tripType:hover {
+    border: 5px;
+    border-color: blue;
+}
+
+#custom-dropBtn {
+    background-color: var(--teal);
+    color: var(--yellow);
+    font-weight: bold;
+    /* margin-top: 10px; */
+}
+
+#weather-nav {
+    color: var(--darkblue);
+    font-weight: bold;
+}
+
+#weather-header { 
+color: var(--darkblue);
+font-weight: bold;
+}
+
+#main-card {
+    background-color: var(--teal);
+    
+}
+
+/* Adding blur to background image on results page */
+.blur {
+    background: rgba(236, 252, 227, 0.4); // Make sure this color has an opacity of less than 1
+    backdrop-filter: blur(30px);
+} 
+
+li {
+    font-size: 0.8rem;
+}
+
+.google-maps {
+    position: relative;
+    padding-bottom: 75%;
+    height: 0;
+    overflow: hidden;
+}
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
