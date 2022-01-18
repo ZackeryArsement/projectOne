@@ -14,6 +14,8 @@ var firstColumn = $('#card-column')
 
 var logoButton = $('#custom-header2')
 
+var loadedCityNumb = 5;
+
 // Keep track of which cards have been selected for favorite bar
 var emptyArray = ['', '', '', '', '', '', '', '', '', ''];
 var favoriteSelectedCards = localStorage.getItem("favoriteSelectedCards") || emptyArray;
@@ -49,8 +51,7 @@ var cityData;
 
 getData(findCityURL);
 
-
-// clearScreen();
+clearScreen();
 
 // When you click the favorite button 
 function favoriteButton(button){
@@ -285,7 +286,6 @@ function getData(URL){
             return response.json();
         })
         .then(function(data){
-            console.log(data);
             cityID = data.data[0].id.toString();
 
             getCityData(cityID);
@@ -298,7 +298,7 @@ function getData(URL){
 }
 
 function getCityData(id){
-    var nearbyCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities/" + id + "/nearbyCities?limit=10&offset=0&radius=100&types=CITY";
+    var nearbyCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities/" + id + "/nearbyCities?limit=" + loadedCityNumb + "&offset=0&radius=100&types=CITY";
             
     setTimeout(function(){
         fetch(nearbyCityURL, {
@@ -313,14 +313,15 @@ function getCityData(id){
                 return response.json();
             })
             .then(function(data){
+                // console.log(data);
                 var userLat;
                 var userLng;
                 var weatherUrl;
 
                 loadedCardLength = data.data.length;
-                console.log(loadedCardLength);
 
                 for(let i=0; i< loadedCardLength; i++){
+                    // console.log(data)
                     cityData = data.data[i];
                     arrayLocation[i] = cityData.city;
                     arrayDistance[i] = cityData.distance;
@@ -330,8 +331,15 @@ function getCityData(id){
                     weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + userLat + '&lon=' + userLng + '&appid=be4771db9c53103bf67e6e18d9ddacc6&units=imperial';
 
                     var index = i;
+                    var cityRegion = cityData.city + ',+' + cityData.region
+                    cityRegion = cityRegion.replace(/\s+/g, '');
 
-                    getApi(weatherUrl, index);
+                    // Fill in information for each card
+
+                    // getApi(weatherUrl, index);
+                    // console.log(cityRegion);
+                    // locationDescription(cityData.city, index);
+                    // locationMapImage(cityRegion, index);
                 }
 
                 createDataObjects(loadedCardLength);
@@ -344,8 +352,6 @@ function getCityData(id){
     },1500);
     
 }
-
-
 
   // Or with jQuery
 

@@ -60,7 +60,6 @@ function getApi(weatherUrl, index) {
           return response.json();
       })
       .then(function(data){
-          console.log (data)
           displayWeather(data, index);
           return data;
       })
@@ -88,7 +87,71 @@ function displayWeather(data, index){
   let highF = highTemp.toFixed(1);
   let lowF = lowTemp.toFixed(1);
   currentF[index].textContent = Temp + '\u00B0F '
-//   Still need to correct spacing & embed weather icon - var iconUrl - into html 
+  //   Still need to correct spacing & embed weather icon - var iconUrl - into html 
   weatherDescrip[index].textContent = sunnyCloudy;
-  weatherHiLo[index].textContent = 'H: ' + highF + '\u00B0 L: ' +lowF + '\u00B0';
+  weatherHiLo[index].textContent = ' H: ' + highF + '\u00B0 L: ' +lowF + '\u00B0';
 };
+
+function locationDescription(city, index){
+  var descriptionURL = "https://google-search1.p.rapidapi.com/google-search?limit=5&hl=en&q=" + city + "&gl=us"
+  var descriptionText = document.getElementsByClassName('location-description');
+
+  fetch(descriptionURL, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "google-search1.p.rapidapi.com",
+      "x-rapidapi-key": "9255887eb5msh9ac0f92f92b85e6p171474jsn9a553aea0426"
+    }
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(function(data){
+    // console.log(data)
+    for(let i=0; i<data.organic.length; i++){
+      var currentDomain = data.organic[i].domain;
+
+      if(currentDomain === 'en.wikipedia.org'){
+        if(data.organic[i].snippet !== ''){
+          console.log(descriptionText[index])
+          descriptionText[index].innerText = data.organic[i].snippet;
+        }
+        else{
+          descriptionText[index].innerText = 'We could not find a description for this city...'
+        }
+      }
+    }
+     return data;
+  })
+  .catch(err => {
+    console.error(err);
+  });
+}
+
+function locationMapImage(city, index){
+  var MapImageURL = "https://google-maps-geocoding-plus.p.rapidapi.com/geocode?address=" + city + "&language=en";
+  
+  var maps = document.getElementsByClassName('google-maps');
+
+  fetch(MapImageURL, {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "google-maps-geocoding-plus.p.rapidapi.com",
+      "x-rapidapi-key": '2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15'
+    }
+  })
+  .then(response => {
+    return response.json();
+  })
+  .then(function(data){
+    console.log(data)
+    var mapLink = data.response.place.place_link;
+    mapLink = mapLink + '&output=embed';
+
+    maps[index].children[0].src = mapLink;
+    return data;
+  })
+  .catch(err => {
+    console.error(err);
+  });
+}
