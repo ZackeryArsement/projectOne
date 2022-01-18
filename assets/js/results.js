@@ -43,6 +43,7 @@ var searchRadius = 300; // Miles
 // When the results html loads up then load in all the result cards associated with the input city and input search type
 function loadResultsPage(){
     inputCity = window.localStorage.getItem('citySearch');
+    console.log(window.localStorage)
 
     // Put the searched city in the navbar of the results page... Make sure it is capitalized
     $('#nav-location')[0].innerText = inputCity.charAt(0).toUpperCase() + inputCity.slice(1).toLowerCase();
@@ -312,6 +313,9 @@ function getData(URL){
 
 // Get the weather, map, and location description for each nearby city
 function getCityData(id){
+    minPopulation = window.localStorage.getItem('minPopulation');
+    searchRadius = window.localStorage.getItem('searchRadius');
+
     var nearbyCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities/" + id + "/nearbyCities?limit=" + loadedCityNumb + "&minPopulation=" + minPopulation + "&offset=0&radius=" + searchRadius + "&types=CITY";
             
     setTimeout(function(){
@@ -350,7 +354,7 @@ function getCityData(id){
                     // Fill in information for each card
 
                     getApi(weatherUrl, index);
-                    // locationMapImage(cityRegion, index);
+                    locationMapImage(cityRegion, index);
                 }
 
                 createDataObjects(loadedCardLength);
