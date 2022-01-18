@@ -14,7 +14,7 @@ body {
 
 .banner-image {
     padding: 10px 0px 10px 0px;
-    height: 200px;
+    height: 150px;
 }
 
 .banner-image2 {
@@ -44,16 +44,14 @@ body {
     margin-left: 20px;
 }
 
-#user-location {
-    text
-}
+
 
 /* .selectCards {
     background-color: var(--beige);
     padding: 10px;
 } */
 
-.row{
+.row {
     margin-bottom: 0;
 }
 
@@ -103,11 +101,6 @@ width: 100%;
     background-color: skyblue;
 }
 
-.tripType:hover {
-    border: 5px;
-    border-color: blue;
-}
-
 #custom-dropBtn {
     background-color: var(--teal);
     color: var(--yellow);
@@ -132,7 +125,8 @@ font-weight: bold;
 
 /* Adding blur to background image on results page */
 .blur {
-    background: rgba(236, 252, 227, 0.4); // Make sure this color has an opacity of less than 1
+    /* // Make sure this color has an opacity of less than 1 */
+    background: rgba(236, 252, 227, 0.4);
     backdrop-filter: blur(30px);
 } 
 
