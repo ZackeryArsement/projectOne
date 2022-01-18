@@ -26,8 +26,6 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
 
       
       <!-- Dropdown Structure -->
-
-      
       <ul id="dropdown1" class="dropdown-content">
         <li><a href="#!"><i class="material-icons">arrow_forward</i>one</a></li>
         <li><a href="#!"><i class="material-icons">arrow_forward</i>two</a></li>
@@ -56,8 +54,15 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
             
             <div id="modal1" class="modal">
               <div class="modal-content">
-                <h4>Favorites</h4>
-                <p>A bunch of text</p>
+                    <!-- --------- Column with favorites --------- -->
+                <div class="col s12 m12" id='favorites-column'>
+
+                  <!-- Parent Row... One cards in each row -->
+                  <div class="row" id='favorites-first-row'>
+                    <!-- Insert card here -->
+                    <!-- Create a new row every time you add a new favorites card -->
+                  </div>
+                </div>
               </div>
               <div class="modal-footer">
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
@@ -71,7 +76,7 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
 <div class="blur">
   <div class='row'>              
       <!-- Column with all the cards -->
-      <div class="col s12 m9">
+      <div class="col s12 m12">
         <!-- Parent Row... Two cards in each row -->
         <div class="row" id='first-row'>
   
@@ -97,7 +102,10 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
                   <div class="col s12 m6" id='map-column'>
                     <div class="card" id='map-card'>
                       <div class="card-image" id='map-image'>
-                        <img src="./assets/images/IMG_3935.JPG">
+                        <div id="map-container-google-8" class="z-depth-1-half map-container-5 google-maps">
+                          <iframe src="https://maps.google.com/maps?q=Barcelona&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -130,25 +138,15 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
             </div>
 
             <!-- Location Description -->
-            <div class="card-content white-text" id='card-description'>
+            <div class="card-content white-text">
               <span class="card-title">Location Description</span>
-              <p>This place is totally wicked! Highly recommend traveling to this location!</p>
+              <p class="location-description">This place is totally wicked! Highly recommend traveling to this location!</p>
             </div>
 
           </div>
         </div>
       </div>
     </div>
-    </div>
-
-    <!-- --------- Column with favorites --------- -->
-    <div class="col s12 m3" id='favorites-column'>
-
-      <!-- Parent Row... One cards in each row -->
-      <div class="row" id='favorites-first-row'>
-        <!-- Insert card here -->
-        <!-- Create a new row every time you add a new favorites card -->
-      </div>
     </div>
   </div>
 
@@ -159,6 +157,7 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="./assets/js/script.js"></script>
   <script src="./assets/js/results.js"></script>
+
 </body>
 
 </html>
