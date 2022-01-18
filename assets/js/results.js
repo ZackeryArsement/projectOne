@@ -12,8 +12,6 @@ var loadedCardLength = 0;
 var firstRow = $('#first-row');
 var firstColumn = $('#card-column')
 
-var logoButton = $('#custom-header2')
-
 // Keep track of which cards have been selected for favorite bar
 var emptyArray = ['', '', '', '', '', '', '', '', '', ''];
 var favoriteSelectedCards = localStorage.getItem("favoriteSelectedCards") || emptyArray;
@@ -327,8 +325,7 @@ function getCityData(id){
 
                     userLat = cityData.latitude;
                     userLng = cityData.longitude;
-                    weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + userLat + '&lon=' + userLng + '&appid=be4771db9c53103bf67e6e18d9ddacc6&units=imperial';
-
+                    weatherUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + userLat + '&lon=' + userLng + '&appid=bec1cdd13d275e4702f754866932c17f&units=imperial';
                     var index = i;
 
                     getApi(weatherUrl, index);

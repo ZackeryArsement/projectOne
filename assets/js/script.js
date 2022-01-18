@@ -7,9 +7,9 @@ var userWalk = $('#userWalk')
 var userDay = $('#userDay')
 var userWeekend = $('#userWeekend')
 var tripSelection
-var userLocation
+var userZipcode
 var selectedTrip = userWalk
-var zipCodeStorage = window.localStorage.setItem('city','')
+var zipCodeStorage = window.localStorage.setItem('zipcode','')
 
 // Function for when the user selects the walk option
 var walkSelect = userWalk.click(function() {
@@ -69,9 +69,7 @@ function getApi(weatherUrl, index) {
       });
     };
 
-    // getApi(weatherUrl2);
-
-// Zack's function - Function to display weather data on results page
+// Function to display weather data on results page
 function displayWeather(data, index){
   var currentF = document.getElementsByClassName('currentF');
   var weatherDescrip = document.getElementsByClassName('weather-description');
@@ -87,8 +85,16 @@ function displayWeather(data, index){
   let Temp = currentTemp.toFixed(1);
   let highF = highTemp.toFixed(1);
   let lowF = lowTemp.toFixed(1);
+  // add conditional statement 
+    // if user selects hike or day trip, display current temp
+    // else display four-day forecast
   currentF[index].textContent = Temp + '\u00B0F '
-//   Still need to correct spacing & embed weather icon - var iconUrl - into html 
+//   Still need to embed weather icon - var iconUrl - into html 
   weatherDescrip[index].textContent = sunnyCloudy;
   weatherHiLo[index].textContent = 'H: ' + highF + '\u00B0 L: ' +lowF + '\u00B0';
 };
+
+// Convert dt to date for multi-day forecast for weekend getaway results
+// const dt = data.current.dt;
+// var day = new Date(dt*1000);
+// console.log(day.toDateString());

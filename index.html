@@ -1,95 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link href="./assets/css/reset.css" />
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/css/style.css" />
-  <title>Let's Get Outta Here!</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Let's Get Outta Here!</title>
+  </head>
 
-<body id='homepage' style="background-image: url(./assets/images/cloud-portrait.jpeg); 
+  <body id='homepage' style="background-image: url(./assets/images/cloud-portrait.jpeg); 
   background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
+  
+  
 
-
-
-  <!-- Create the title bar for the home page -->
-  <div class="banner-image" style="background-image: url(./assets/images/trees_leaves_medres.jpeg); 
+    <!-- Create the title bar for the home page -->
+    <div class="banner-image" style="background-image: url(./assets/images/trees_leaves_medres.jpeg); 
     background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
-    <div class="nav-wrapper pageTitle">
-      <nav id="custom-nav">
+      <div class="nav-wrapper pageTitle">
+    <nav id="custom-nav">
         <a href="#!" class="brand-logo center" id="custom-header">Let's Get Outta Here!</a>
-    </div>
+      </div>
     </nav>
   </div>
-  <!--Create a user input field to input location -->
-  <div class="row uLoc">
-    <div class="input-field col-12 userLocation">
-      <input class="center" id="user-location" type="text" class="validate" style="display: block; backdrop-filter: blur(40px); font-weight:bold; min-width: fit-content;"
-        placeholder="Enter Your City">
-      <!-- <label for="user-location">Enter your current zip code</label> -->
-    </div>
-  </div>
-
-  <!-- Create the cards used to navigate the homepage and make trip selection -->
-  <div class="selectCards">
-    <div class="row">
-      <div class="col s12 m12 l4">
-        <div class="card tripType" id="userWalk">
-          <div class="card-image">
-            <img alt="woman walking on path through wooded area" src=./assets/images/walk1.jpeg>
-            <span class="card-title">Walk / Hike</span>
-          </div>
-          <!-- <div class="card-action">
-              <a href="#">I just have a few hours but need to get out</a> -->
-          <!-- </div> -->
+    <!--Create a user input field to input location -->
+      <div class="row uLoc">
+        <div class="input-field col-12 userLocation">
+          <input class="center" id="user-location" type="text" class="validate" style = "display: block; backdrop-filter: blur(40px); font-weight:bold; min-width: fit-content;"
+          placeholder="Enter Your City">
+          <!-- <label for="user-location">Enter your current zip code</label> -->
         </div>
-      </div>
+    </div>
 
-      <div class="col s12 m12 l4">
-        <div class="card tripType" id="userDay">
-          <div class="card-image">
-            <img alt="First person perspective of driving on a scenic road" src=./assets/images/daytrip1.jpeg>
-            <span class="card-title">Day Trip</span>
+    <!-- Create the cards used to navigate the homepage and make trip selection -->
+    <div class="selectCards">
+      <div class="row">
+        <div class="col s12 m12 l4">
+          <div class="card tripType" id="userWalk">
+            <div class="card-image">
+              <img alt= "woman walking on path through wooded area" src=./assets/images/walk1.jpeg>
+              <span class="card-title">Walk / Hike</span>
+            </div>
+            <!-- <div class="card-action">
+              <a href="#">I just have a few hours but need to get out</a> -->
+            <!-- </div> -->
           </div>
-          <!-- <div class="card-action">
+        </div>
+
+        <div class="col s12 m12 l4">
+          <div class="card tripType" id="userDay">
+            <div class="card-image">
+              <img alt="First person perspective of driving on a scenic road" src=./assets/images/daytrip1.jpeg>
+              <span class="card-title">Day Trip</span>
+            </div>
+            <!-- <div class="card-action">
               <a href="#">I've got a full day to work with</a>
             </div> -->
-        </div>
-      </div>
-
-      <div class="col s12 m12 l4">
-        <div class="card tripType" id="userWeekend">
-          <div class="card-image">
-            <img alt="A couple holding hands walking through a grassy field" src=./assets/images/getaway1.jpeg>
-            <span class="card-title">Weekend Getaway</span>
           </div>
-          <!-- <div class="card-action">
+        </div>
+
+        <div class="col s12 m12 l4">
+          <div class="card tripType" id="userWeekend">
+            <div class="card-image">
+              <img alt="A couple holding hands walking through a grassy field" src=./assets/images/getaway1.jpeg>
+              <span class="card-title">Weekend Getaway</span>
+            </div>
+            <!-- <div class="card-action">
               <a href="#">I want to escape for a weekend</a>
             </div> -->
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div>        
+    
+    <box textAlign="center">
+      <button class="btn waves-effect waves-light submitBtn" type="submit" name="action" id="custom-homeBtn">Find your 
+        destination!
+        <i class="material-icons right"></i>
+      </button>
+    </box>       
 
-  <box textAlign="center">
-    <button class="btn waves-effect waves-light submitBtn" type="submit" name="action" id="custom-homeBtn">Find your
-      destination!
-      <i class="material-icons right"></i>
-    </button>
-  </box>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="./assets/js/script.js"></script>
-</body>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
 
 </html>
