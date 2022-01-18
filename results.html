@@ -16,65 +16,32 @@
     <title>Let's Get Outta Here!</title>
   </head>
 
-  <body id='homepage' style="background-image: url(./assets/images/sunTrees_medres.jpg); 
-  background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
+<body id='homepage' style="background-image: url(./assets/images/sunTrees_medres.jpg); 
+  background-repeat: no-repeat;background-attachment: fixed; background-size: cover;" onload='loadResultsPage()'>
 
-<div class="banner-image2" style="background-image: url(./assets/images/cloud-portrait.jpeg); 
-background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
-    <!-- Results navbar -->
-    <div class='navbar-fixed'>
-      <!-- Dropdown Structure -->
-      <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!"><i class="material-icons">arrow_forward</i>one</a></li>
-        <li><a href="#!"><i class="material-icons">arrow_forward</i>two</a></li>
-        <li class="divider" tabindex="-1"></li>
-        <li><a href="#!"><i class="material-icons">arrow_forward</i>three</a></li>
-        <li><a href="#!"><i class="material-icons">arrow_forward</i>four</a></li>
-        <li><a href="#!"><i class="material-icons">arrow_forward</i>five</a></li>
-      </ul>
-     
-    <nav id="custom-nav2">
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Location</a>
-          <div class = "dropdown">
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <!-- Dropdown Trigger -->
-              <li><a class="dropdown-trigger btn" id="custom-dropBtn" href="#!" data-target="dropdown1">Drop Me!<i
-                    class="material-icons right"></i></a></li>
-              <li>
-                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Favorites</a>
-              </li>
-            </ul>
-
-            <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
-
-            <!-- Modal Structure -->
-            
-            <div id="modal1" class="modal">
-              <div class="modal-content">
-                    <!-- --------- Column with favorites --------- -->
-                <div class="col s12 m12" id='favorites-column'>
-
-                  <!-- Parent Row... One cards in each row -->
-                  <div class="row" id='favorites-first-row'>
-                    <!-- Insert card here -->
-                    <!-- Create a new row every time you add a new favorites card -->
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
-              </div>
-            </div>
+  <div class="banner-image2" style="background-image: url(./assets/images/cloud-portrait.jpeg); background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
+      <!-- Results navbar -->
+      <div class='navbar-fixed'>      
+        <nav id="custom-nav2">
+          <div class="nav-wrapper">
+            <a href="#!" class="brand-logo" id='nav-location' onclick='switchToIndex()'>Location</a>
+              <div class = "dropdown">
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <!-- Dropdown Trigger -->
+                  <li>
+                    <a class="waves-effect waves-light btn" onclick='favoriteSideBar()' href="#modal1">Favorites</a>
+                  </li>
+                </ul>
           </div>
-      </nav>
-    </div>
+        </nav>
+      </div>
   </div>
+
   <div class="blur">
- <div class='row'>
-                    
+    <div class='row'>
+                      
       <!-- Column with all the cards -->
-      <div class="col s12 m12">
+      <div class="col s12 m12" id='results-column'>
         <!-- Parent Row... Two cards in each row -->
         <div class="row" id='first-row'>
   
@@ -82,7 +49,7 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
           <div class="col s12 m6" id='card-column'>
   
             <!-- First Card -->
-            <div class="card darken-1" id='main-card'>
+            <div class="card darken-1 results-card" id='main-card'>
   
               <!-- Top of Card Content -->
               <div class="card-content" id='top-card'>
@@ -126,19 +93,24 @@ background-repeat: no-repeat;background-attachment: fixed; background-size: cove
               <!-- Location Description -->
               <div class="card-content white-text" id='card-description'>
                 <span class="card-title">Location Description</span>
-                <p>This place is totally wicked! Highly recommend traveling to this location!</p>
+                <p class='location-description'>This place is totally wicked! Highly recommend traveling to this location!</p>
               </div>
             </div>
 
-            <!-- Location Description -->
-            <div class="card-content white-text">
-              <span class="card-title">Location Description</span>
-              <p class="location-description">This place is totally wicked! Highly recommend traveling to this location!</p>
-            </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- --------- Column with favorites --------- -->
+      <div class="col s12 m0" id='favorites-column'>
+
+        <!-- Parent Row... One cards in each row -->
+        <div class="row" id='favorites-first-row'>
+          <!-- First Card Column -->>
+            <!-- Insert card here -->
+
+        </div>
+      </div>
     </div>
   </div>
 

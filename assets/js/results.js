@@ -14,7 +14,10 @@ var firstColumn = $('#card-column')
 
 var logoButton = $('#custom-header2')
 
-var loadedCityNumb = 5;
+var loadedCityNumb = 10;
+
+var defaultColumn = true;
+
 // Keep track of which cards have been selected for favorite bar
 var emptyArray = ['', '', '', '', '', '', '', '', '', ''];
 var favoriteSelectedCards = localStorage.getItem("favoriteSelectedCards") || emptyArray;
@@ -31,26 +34,41 @@ var favoriteFirstRowHtml = favoriteFirstRow.html();
 var rowCount;
 
 // Retrieves stored array or initializes a new one if blank nothing previously stored
-// localStorage.clear();
 var savedFavorites = localStorage.getItem("savedFavorites") || [null]
 
-//Load the saved favorites bar
-favoriteFirstRow.html(savedFavorites);
+var inputCity;
+var minPopulation = 150000;
+var searchRadius = 300; // Miles
 
-// Load the cards and fill them with content
-setStoredFavoritesStorageToArray()
-clearScreen();
+// When the results html loads up then load in all the result cards associated with the input city and input search type
+function loadResultsPage(){
+    inputCity = window.localStorage.getItem('citySearch');
 
-// Fetch data
-// API Values
-var inputCity = 'austin';
-var cityID;
-var findCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=1&offset=0&minPopulation=100000&namePrefix=" + inputCity;
-var cityData;
+    // Put the searched city in the navbar of the results page... Make sure it is capitalized
+    $('#nav-location')[0].innerText = inputCity.charAt(0).toUpperCase() + inputCity.slice(1).toLowerCase();
 
-getData(findCityURL);
+    //Load the saved favorites bar
+    favoriteFirstRow.html(savedFavorites);
 
-clearScreen();
+    var favoritesColumn = $('#favorites-column');
+
+    favoritesColumn.css('visibility', 'hidden');
+    favoritesColumn.css('display', 'none');
+
+    // Load the cards and fill them with content
+    setStoredFavoritesStorageToArray()
+    clearScreen();
+
+    // Fetch data
+    // API Values
+    var cityID;
+    var findCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=1&offset=0&minPopulation=100000&namePrefix=" + inputCity;
+    var cityData;
+
+    getData(findCityURL);
+
+    clearScreen();
+}
 
 // When you click the favorite button 
 function favoriteButton(button){
@@ -255,14 +273,9 @@ function clearScreen(){
     }
 }
 
-// When Document is ready to load
-$( document ).ready(function() {
-    // Dropdown trigger JS (With Hover Dropdown)
-    $(".dropdown-trigger").dropdown({ hover: true });
-});
-
+// Convert the local stored data from a string to an array
 function setStoredFavoritesStorageToArray(){
-    // If the locally storaged string with our saved favorite locations is not empty then create an array out of the string with ',' as the delimeter
+    // If the locally stored string with our saved favorite locations is not empty then create an array out of the string with ',' as the delimeter
     if((favoriteSelectedCards !== ',,,,,,,,,') && (favoriteSelectedCards !== emptyArray)){
         favoriteSelectedCards = localStorage.getItem("favoriteSelectedCards").split(',');
     }
@@ -272,6 +285,7 @@ function setStoredFavoritesStorageToArray(){
     }
 }
 
+// Convert the input city into an id that can be used to find that city's data
 function getData(URL){
     fetch(URL, {
         "method": "GET",
@@ -296,8 +310,9 @@ function getData(URL){
         });
 }
 
+// Get the weather, map, and location description for each nearby city
 function getCityData(id){
-    var nearbyCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities/" + id + "/nearbyCities?limit=" + loadedCityNumb + "&offset=0&radius=100&types=CITY";
+    var nearbyCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities/" + id + "/nearbyCities?limit=" + loadedCityNumb + "&minPopulation=" + minPopulation + "&offset=0&radius=" + searchRadius + "&types=CITY";
             
     setTimeout(function(){
         fetch(nearbyCityURL, {
@@ -334,9 +349,7 @@ function getCityData(id){
 
                     // Fill in information for each card
 
-                    // getApi(weatherUrl, index);
-                    // console.log(cityRegion);
-                    // locationDescription(cityData.city, index);
+                    getApi(weatherUrl, index);
                     // locationMapImage(cityRegion, index);
                 }
 
@@ -351,12 +364,39 @@ function getCityData(id){
     
 }
 
-// Or with jQuery
+// When you press the location name on the navbar then you go back to the search screen
+function switchToIndex(){
+    location.href='./index.html';
+}
 
-  $(document).ready(function(){
-    $('.modal').modal();
-  });
+// When you press the favorite button in the navbar then the favorites sidebar will switch between displayed/not displayed
+function favoriteSideBar(){
+    var resultsColumn = $('#results-column');
+    var favoritesColumn = $('#favorites-column');
 
-  logoButton.click(function() {
-    window.location.href='./index.html';
-});
+    if(defaultColumn){
+        resultsColumn.removeClass('m12');
+        resultsColumn.addClass('m9');
+
+        favoritesColumn.removeClass('m0');
+        favoritesColumn.addClass('m3');
+
+        favoritesColumn.css('visibility', 'visible');
+        favoritesColumn.css('display', 'block');
+
+        defaultColumn = false;
+    }
+    else{
+        resultsColumn.removeClass('m9');
+        resultsColumn.addClass('m12');
+
+        favoritesColumn.removeClass('m3');
+        favoritesColumn.addClass('m0');
+
+        favoritesColumn.css('visibility', 'hidden');
+        favoritesColumn.css('display', 'none');
+
+        defaultColumn = true;
+    }
+
+}

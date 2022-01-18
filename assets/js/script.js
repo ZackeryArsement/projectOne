@@ -7,9 +7,8 @@ var userWalk = $('#userWalk')
 var userDay = $('#userDay')
 var userWeekend = $('#userWeekend')
 var tripSelection
-var userZipcode
 var selectedTrip = userWalk
-var zipCodeStorage = window.localStorage.setItem('zipcode','')
+var citySearch = localStorage.getItem('citySearch', '') || [''];
 
 // Function for when the user selects the walk option
 var walkSelect = userWalk.click(function() {
@@ -26,7 +25,6 @@ var walkSelect = userWalk.click(function() {
 var daySelect = userDay.click(function() {
     searchRadius= 75;
     searchType = userType[1];
-
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userDay;
     selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
@@ -43,12 +41,17 @@ var weekendSelect = userWeekend.click(function() {
 
 });
 
-// Function for what happens when the user clicks the button to show them the trips
+// When you click the search butotn on the default screen, then the window stores that input into local storage and switches the html to the results page html
 submitBtn.click(function() {
-    userZipcode = $('#user-location').val();
-    window.localStorage.setItem('zipcode', userZipcode);
-    window.location.href='./results.html';
+    if(citySearch[0] === ''){
+      citySearch.splice(0, 1, $('#user-location').val());
+      localStorage.setItem('citySearch', citySearch);
+    }
+    else{
+      localStorage.setItem('citySearch', citySearch);
+    }
 
+    location.href='./results.html';
 });
 
 // Get Weather data for results page
@@ -85,56 +88,16 @@ function displayWeather(data, index){
   let highF = highTemp.toFixed(1);
   let lowF = lowTemp.toFixed(1);
   // add conditional statement 
-    // if user selects hike or day trip, display current temp
-    // else display four-day forecast
-  currentF[index].textContent = Temp + '\u00B0F '
+  // if user selects hike or day trip, display current temp
+  // else display four-day forecast
+  currentF[index].textContent = Temp + '\u00B0F';
   
-  //   Still need to correct spacing & embed weather icon - var iconUrl - into html 
-  weatherDescrip[index].textContent = sunnyCloudy;
-  weatherHiLo[index].textContent = ' H: ' + highF + '\u00B0 L: ' +lowF + '\u00B0';
+  // Still need to correct spacing & embed weather icon - var iconUrl - into html 
+  weatherDescrip[index].textContent = sunnyCloudy + ' ';
+  weatherHiLo[index].textContent = '-H: ' + highF + '\u00B0 L: ' +lowF + '\u00B0';
 };
 
-// Convert dt to date for multi-day forecast for weekend getaway results
-// const dt = data.current.dt;
-// var day = new Date(dt*1000);
-// console.log(day.toDateString());
-
-function locationDescription(city, index){
-  var descriptionURL = "https://google-search1.p.rapidapi.com/google-search?limit=5&hl=en&q=" + city + "&gl=us"
-  var descriptionText = document.getElementsByClassName('location-description');
-
-  fetch(descriptionURL, {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-host": "google-search1.p.rapidapi.com",
-      "x-rapidapi-key": "9255887eb5msh9ac0f92f92b85e6p171474jsn9a553aea0426"
-    }
-  })
-  .then(response => {
-    return response.json();
-  })
-  .then(function(data){
-    // console.log(data)
-    for(let i=0; i<data.organic.length; i++){
-      var currentDomain = data.organic[i].domain;
-
-      if(currentDomain === 'en.wikipedia.org'){
-        if(data.organic[i].snippet !== ''){
-          console.log(descriptionText[index])
-          descriptionText[index].innerText = data.organic[i].snippet;
-        }
-        else{
-          descriptionText[index].innerText = 'We could not find a description for this city...'
-        }
-      }
-    }
-     return data;
-  })
-  .catch(err => {
-    console.error(err);
-  });
-}
-
+// Function to access the maps on results page and a description of the location
 function locationMapImage(city, index){
   var MapImageURL = "https://google-maps-geocoding-plus.p.rapidapi.com/geocode?address=" + city + "&language=en";
   
@@ -151,11 +114,18 @@ function locationMapImage(city, index){
     return response.json();
   })
   .then(function(data){
-    console.log(data)
+    console.log(data);
+    // Load in city map
     var mapLink = data.response.place.place_link;
     mapLink = mapLink + '&output=embed';
 
     maps[index].children[0].src = mapLink;
+    
+    // Load in city description
+    var descriptionText = document.getElementsByClassName('location-description');
+
+    descriptionText[index].innerText = data.response.place.quick_facts[0].text;
+
     return data;
   })
   .catch(err => {
