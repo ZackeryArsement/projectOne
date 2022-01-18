@@ -1,22 +1,18 @@
 var submitBtn = $('.submitBtn')
 var searchRadius = 0
 var searchType
-const userType = ['Walk', 'DayTrip', 'Weekend']
 var tripTypeCard = $('.tripType')
 var userWalk = $('#userWalk')
 var userDay = $('#userDay')
 var userWeekend = $('#userWeekend')
 var tripSelection
-var userZipcode
-var selectedTrip = userWalk
-var zipCodeStorage = window.localStorage.setItem('zipcode','')
-
+var citySearch
+var selectedTrip = userDay;
+var minPopulation = 0
 
 // Function for when the user selects the walk option
 var walkSelect = userWalk.click(function() {
     searchRadius= 20;
-    searchType = userType[0];
-
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userWalk;
     selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
@@ -25,9 +21,8 @@ var walkSelect = userWalk.click(function() {
 
 // Function for when the user selects the Day Trip option
 var daySelect = userDay.click(function() {
-    searchRadius= 75;
-    searchType = userType[1];
-
+    searchRadius= 100;
+    minPopulation = 50000;
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userDay;
     selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
@@ -36,8 +31,8 @@ var daySelect = userDay.click(function() {
 
 // Function for when the user selects the Weekend Getaway option
 var weekendSelect = userWeekend.click(function() {
-    searchRadius=200;
-    searchType = userType[2];
+    searchRadius=400;
+    minPopulation = 150000;
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userWeekend;
     selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
@@ -46,19 +41,17 @@ var weekendSelect = userWeekend.click(function() {
 
 // Function for what happens when the user clicks the button to show them the trips
 submitBtn.click(function() {
-  userZipcode = $('#user-location').val();
-  window.localStorage.setItem('zipcode', userZipcode);
-  if ((userZipcode != '') && (searchRadius !== 0)) {
+  citySearch = $('#user-location').val();
+  window.localStorage.setItem('citySearch', citySearch);
+  window.localStorage.setItem('minPopulation', minPopulation);
+  window.localStorage.setItem('searchRadius', searchRadius);
+  console.log(localStorage);
+  if ((citySearch != '') && (searchRadius !== 0)) {
     
-    // userZipcode = $('#user-location').val();
-    // window.localStorage.setItem('zipcode', userZipcode);
     window.location.href='./results.html';
     } else {
     console.log('Please enter your location and select your trip type')
-    document.addEventListener('.submitBtn', function() {
-      document.querySelector('#alertModal').open();
-      
-    });
+    alert("Please enter your location and choose the type of trip you'd like to go on")
     }
 });
 
