@@ -46,7 +46,7 @@ var daySelect = userDay.click(function() {
     }
 
     console.log(localStorage);
-    searchCity();
+    // searchCity();
 });
 
 // Function for when the user selects the Weekend Getaway option
@@ -73,7 +73,7 @@ var weekendSelect = userWeekend.click(function() {
       localStorage.setItem('searchRadius', searchRadius);
     }
     console.log(localStorage);
-    searchCity();
+    // searchCity();
 });
 
 // When you click the search butotn on the default screen, then the window stores that input into local storage and switches the html to the results page html
