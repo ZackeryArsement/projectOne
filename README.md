@@ -32,3 +32,4 @@ API support from: OpenWeatherMap, Google Places, and Geocode DB
 
 ## Checkout Our Demo Below:
 
+![A user enters city location and clicks on button for Daytrip or Weekend Getaway to generation a list of destination choices.](./assets/images/website-demo.gif)
