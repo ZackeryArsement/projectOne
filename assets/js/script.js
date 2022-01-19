@@ -169,6 +169,5 @@ function searchCity(){
   }
   else{
     console.log('Please enter your location and select your trip type')
-    alert("Please enter your location and choose the type of trip you'd like to go on")
   }
 }
