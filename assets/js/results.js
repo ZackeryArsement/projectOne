@@ -14,7 +14,7 @@ var firstColumn = $('#card-column')
 
 var logoButton = $('#custom-header2')
 
-var loadedCityNumb = 10;
+var loadedCityNumb = 3;
 
 var defaultColumn = true;
 
@@ -37,8 +37,6 @@ var rowCount;
 var savedFavorites = localStorage.getItem("savedFavorites") || [null]
 
 var inputCity;
-var minPopulation = 150000;
-var searchRadius = 300; // Miles
 
 // When the results html loads up then load in all the result cards associated with the input city and input search type
 function loadResultsPage(){
@@ -61,13 +59,9 @@ function loadResultsPage(){
 
     // Fetch data
     // API Values
-    var cityID;
-    var findCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=1&offset=0&minPopulation=100000&namePrefix=" + inputCity;
-    var cityData;
-
-    getData(findCityURL);
-
-    clearScreen();
+    cityID = window.localStorage.getItem('cityID');
+    
+    getCityData(cityID);
 }
 
 // When you click the favorite button 
@@ -285,31 +279,6 @@ function setStoredFavoritesStorageToArray(){
     }
 }
 
-// Convert the input city into an id that can be used to find that city's data
-function getData(URL){
-    fetch(URL, {
-        "method": "GET",
-        "headers": {
-            "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-            "x-rapidapi-key":"dc52e1306fmsh499b745225e0ed7p1f9230jsnd35ba4c60dc2" //this is the key for the paid subscription
-            // "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
-        }
-        })
-        .then(response => {
-            return response.json();
-        })
-        .then(function(data){
-            cityID = data.data[0].id.toString();
-
-            getCityData(cityID);
-
-            return data;
-        })
-        .catch(err => {
-            console.error(err);
-        });
-}
-
 // Get the weather, map, and location description for each nearby city
 function getCityData(id){
     minPopulation = window.localStorage.getItem('minPopulation');
@@ -330,7 +299,6 @@ function getCityData(id){
                 return response.json();
             })
             .then(function(data){
-                // console.log(data);
                 var userLat;
                 var userLng;
                 var weatherUrl;
@@ -338,7 +306,6 @@ function getCityData(id){
                 loadedCardLength = data.data.length;
 
                 for(let i=0; i< loadedCardLength; i++){
-                    // console.log(data)
                     cityData = data.data[i];
                     arrayLocation[i] = cityData.city;
                     arrayDistance[i] = cityData.distance;
@@ -351,7 +318,6 @@ function getCityData(id){
                     cityRegion = cityRegion.replace(/\s+/g, '');
 
                     // Fill in information for each card
-
                     getApi(weatherUrl, index);
                     locationMapImage(cityRegion, index);
                 }

@@ -9,8 +9,11 @@ var selectedTrip = userDay;
 
 // Locally stored values
 var citySearch = localStorage.getItem('citySearch', '') || [''];
-var searchRadius = localStorage.getItem('searchRadius', '') || [''];
-var minPopulation = localStorage.getItem('minPopulation', '') || [''];
+var searchRadius = localStorage.getItem('searchRadius', '') || ['100'];
+var minPopulation = localStorage.getItem('minPopulation', '') || ['50000'];
+var cityID = localStorage.getItem('cityID', '') || [''];;
+
+// localStorage.clear();
 
 // Function for when the user selects the walk option
 var walkSelect = userWalk.click(function() {
@@ -23,52 +26,26 @@ var walkSelect = userWalk.click(function() {
 
 // Function for when the user selects the Day Trip option
 var daySelect = userDay.click(function() {
-    searchRadius= 100;
+    searchRadius = 100;
     minPopulation = 50000;
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userDay;
     selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
 
-    if(minPopulation[0] === ''){
-      minPopulation.splice(0, 1, minPopulation);
-      localStorage.setItem('minPopulation', minPopulation);
-    }
-    else{
-      localStorage.setItem('minPopulation', minPopulation);
-    }
-
-    if(searchRadius[0] === ''){
-      searchRadius.splice(0, 1, searchRadius);
-      localStorage.setItem('searchRadius', searchRadius);
-    }
-    else{
-      localStorage.setItem('searchRadius', searchRadius);
-    }
+    checkAndSetLocalStorage(minPopulation, 'minPopulation');
+    checkAndSetLocalStorage(searchRadius, 'searchRadius');
 });
 
 // Function for when the user selects the Weekend Getaway option
 var weekendSelect = userWeekend.click(function() {
-    searchRadius=400;
+    searchRadius = 400;
     minPopulation = 150000;
     selectedTrip.css('box-shadow', 'none');
     selectedTrip = userWeekend;
     selectedTrip.css('box-shadow', '0 0 10px 10px #F2BE22');
 
-    if(minPopulation[0] === ''){
-      minPopulation.splice(0, 1, minPopulation);
-      localStorage.setItem('minPopulation', minPopulation);
-    }
-    else{
-      localStorage.setItem('minPopulation', minPopulation);
-    }
-
-    if(searchRadius[0] === ''){
-      searchRadius.splice(0, 1, searchRadius);
-      localStorage.setItem('searchRadius', searchRadius);
-    }
-    else{
-      localStorage.setItem('searchRadius', searchRadius);
-    }
+    checkAndSetLocalStorage(minPopulation, 'minPopulation');
+    checkAndSetLocalStorage(searchRadius, 'searchRadius');
 });
 
 // Get Weather data for results page
@@ -154,20 +131,58 @@ function locationMapImage(city, index){
 function searchCity(){
   citySearch = $('#user-location').val();
 
-  if(citySearch[0] === ''){
-    citySearch.splice(0, 1, citySearch);
-    localStorage.setItem('citySearch', citySearch);
-  }
-  else{
-    localStorage.setItem('citySearch', citySearch);
-  }
+  checkAndSetLocalStorage(searchRadius, 'searchRadius');
+  checkAndSetLocalStorage(minPopulation, 'minPopulation');
+  
+  var findCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=1&offset=0&minPopulation=100000&namePrefix=" + citySearch;
 
-  location.href='./results.html';
+  getData(findCityURL);
+}
 
-  if ((citySearch != '') && (searchRadius !== 0)){
-    window.location.href='./results.html';
+// Convert the input city into an id that can be used to find that city's data
+function getData(URL){
+  fetch(URL, {
+      "method": "GET",
+      "headers": {
+          "x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
+          "x-rapidapi-key":"dc52e1306fmsh499b745225e0ed7p1f9230jsnd35ba4c60dc2" //this is the key for the paid subscription
+          // "x-rapidapi-key": "2ad8fcafecmsh3b2f55fa0261ecfp1301a0jsn70db2fbb2f15"
+      }
+      })
+      .then(response => {
+          return response.json();
+      })
+      .then(function(data){
+        cityID = data.data[0].id.toString();
+
+        // Default city is Abu Dhabi... if the program says you put in Abu Dhabi but that is not your input value then display an error
+        if((data.data[0].city.toLowerCase() === 'abu ahabi') && ($('#user-location').val().toLowerCase() != 'abu dhabi')){
+          console.log('Please enter your location and select your trip type')
+        }
+        else{
+          citySearch = data.data[0].city;
+  
+          checkAndSetLocalStorage(citySearch, 'citySearch');
+          checkAndSetLocalStorage(cityID, 'cityID');
+  
+          location.href='./results.html';
+        }
+      })
+      // If the input is not a valid input or not a city within our database then turn on error catch
+      .catch(err => {
+        console.log('Please enter your location and select your trip type')
+        console.error(err);
+      });
+}
+
+function checkAndSetLocalStorage(storedValue, valueString){
+  // If the local storage is an array then splice the first value and equal it to the stored value
+  if(storedValue[0] === ''){
+    storedValue.splice(0, 1, storedValue);
+    localStorage.setItem(valueString, storedValue);
   }
+  // If the local storage is a string then change the string to the stored value
   else{
-    console.log('Please enter your location and select your trip type')
+    localStorage.setItem(valueString, storedValue);
   }
 }
