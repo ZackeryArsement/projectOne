@@ -162,10 +162,10 @@ function searchCity(){
     localStorage.setItem('citySearch', citySearch);
   }
 
-  location.href='./results.html';
+  // location.href='./results.html';
 
   if ((citySearch != '') && (searchRadius !== 0)){
-    window.location.href='./results.html';
+    location.href='./results.html';
   }
   else{
     console.log('Please enter your location and select your trip type')

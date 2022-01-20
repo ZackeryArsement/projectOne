@@ -65,6 +65,8 @@ function loadResultsPage(){
     var findCityURL = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities?limit=1&offset=0&minPopulation=100000&namePrefix=" + inputCity;
     var cityData;
 
+    console.log(inputCity);
+
     getData(findCityURL);
 
     clearScreen();
@@ -352,8 +354,8 @@ function getCityData(id){
 
                     // Fill in information for each card
 
-                    getApi(weatherUrl, index);
-                    locationMapImage(cityRegion, index);
+                    // getApi(weatherUrl, index);
+                    // locationMapImage(cityRegion, index);
                 }
 
                 createDataObjects(loadedCardLength);
